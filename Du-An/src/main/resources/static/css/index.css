@@ -1,0 +1,122 @@
+/* Tùy chỉnh cho icon kính lúp  :hover*/
+.fas {
+
+  font-size: 1.5rem;
+}
+
+.dangNhap {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.gioHang {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+/* Tùy chỉnh để menu thả xuống hiển thị khi hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+  /* Để menu thả xuống không bị lệch */
+}
+
+.chu-footer {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+p.TenSP {
+  width: auto;
+  /* Độ rộng của thẻ (có thể thay đổi theo ý muốn) */
+  white-space: nowrap;
+  /* Không cho phép xuống dòng */
+  overflow: hidden;
+  /* Ẩn phần văn bản tràn ra ngoài */
+  text-overflow: ellipsis;
+  /* Hiển thị dấu ba chấm cho phần bị cắt */
+}
+
+.full-menu {
+  position: fixed;
+  /* Giữ cố định thanh menu trên màn hình khi cuộn */
+  top: 0;
+  /* Đặt ở vị trí đầu trang */
+  left: 0;
+  /* Bắt đầu từ mép trái của màn hình */
+  width: 100vw;
+  /* Chiều rộng chiếm toàn bộ màn hình */
+  z-index: 999;
+  /* Đảm bảo nằm trên các phần tử khác */
+  background-color: #333;
+  /* Màu nền cho thanh menu */
+  padding: 0;
+  /* Loại bỏ padding nếu có */
+}
+
+.full-menu .navbar {
+  width: 100%;
+  /* Chiều rộng của nav-bar bên trong */
+  margin: 0;
+  /* Loại bỏ margin */
+}
+
+.full-menu .navbar .container-fluid {
+  max-width: 100%;
+  /* Đảm bảo không giới hạn chiều rộng */
+  padding: 0 20px;
+  /* Nếu muốn giữ một chút khoảng cách ở hai bên */
+}
+
+.chu-footer {
+  color: #fff;
+  /* Màu chữ cho menu */
+}
+
+.tatca {
+  text-decoration: underline;
+}
+
+.mauSP img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  padding: 2px;
+
+}
+
+.cuoiTrang .TTDH {
+  font-weight: 600;
+}
+
+.cuoiTrang .thongTin {
+  font-size: 13px;
+}
+
+.cuoiTrang ul li {
+  margin-bottom: 8px;
+  /* Khoảng cách giữa các mục */
+}
+
+.cuoiTrang ul li i {
+  margin-right: 5px;
+  /* Khoảng cách giữa icon và văn bản */
+}
+.cuoiTrang .custom-icon {
+  font-size: 10px; /* Điều chỉnh kích thước theo ý muốn */
+}
+.cuoiTrang .custom-icon2 {
+  font-size: 30px; /* Điều chỉnh kích thước theo ý muốn */
+  margin-right: 10px; /* Cách nhau 1px */
+}
+img.BoCongThuong{
+  ul.list-unstyled {
+    padding-right: 0; /* Loại bỏ padding mặc định */
+    text-align: right; /* Căn lề về bên trái */
+}
+}
