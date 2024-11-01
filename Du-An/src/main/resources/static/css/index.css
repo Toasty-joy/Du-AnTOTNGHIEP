@@ -120,3 +120,207 @@ img.BoCongThuong{
     text-align: right; /* Căn lề về bên trái */
 }
 }
+.thanhSapXep {
+  width: 250px; /* Bạn có thể điều chỉnh chiều rộng theo ý muốn */
+  font-size: 15px; /* Kích thước font nhỏ hơn */
+  padding: 5px; /* Điều chỉnh khoảng cách bên trong */
+}
+@media (max-width: 576px) {
+
+  .thanhSapXepFull {
+
+    height: 50px;
+   background: #E5E5E5; /* Đổi màu viền nếu muốn */
+  }
+  .thanhSapXep {
+    font-size: 12px; /* Chỉnh cỡ chữ theo ý muốn */
+  }
+}
+.pagination .page-link {
+  color: #635f5f; /* Màu chữ */
+  border-color:#635f5f; /* Màu viền */
+}
+
+/* Thay đổi màu chữ và viền khi di chuột */
+.pagination .page-link:hover {
+  color: white; /* Màu chữ khi di chuột */
+  border-color: black; /* Màu viền khi di chuột */
+  background: #333333;
+
+}
+.ratingDanhGia {
+  color: orange;
+  font-size: 20px;
+}
+.textDanhGia {
+  font-size: 14px;
+  margin-left: 8px;
+}
+.tien{
+  color: red;
+  font-size: 30px;
+}
+
+
+.mau {
+  display: flex; /* Đặt các phần tử nằm chung một hàng */
+  align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.mau .color-container {
+  display: flex; /* Đặt các nút nằm chung hàng */
+  align-items: center;
+  margin-left: 10px; /* Khoảng cách giữa tiêu đề và nút chọn */
+}
+
+.mau .color-button {
+  display: none; /* Ẩn input radio */
+}
+
+.label-button {
+  width: 30px;
+  height: 30px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.color-black {
+  background-image: url('img/den.png');
+  background-size: cover;
+}
+
+.color-white {
+  background-image: url('img/trang.png');
+  background-size: cover;
+}
+
+/* Khi input radio được chọn, áp dụng viền đỏ */
+.color-button:checked + .label-button {
+  border: 2px solid red;
+}
+.size-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.size-option {
+  display: none;
+}
+
+.size-options label {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.size-option:checked + label {
+  border: 2px solid red;
+}
+/*ảnh sản phẩm*/
+.image-container {
+  margin-bottom: 20px;
+}
+
+.anhLon {
+  width: auto; /* Chiều rộng của ảnh lớn */
+  height: auto; /* Tự động điều chỉnh chiều cao */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+}
+
+.anhNho {
+  width: 100px; /* Chiều rộng của ảnh nhỏ */
+  height: auto; /* Tự động điều chỉnh chiều cao */
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid transparent; /* Để có viền khi chọn */
+  border-radius: 4px;
+  transition: border 0.3s;
+}
+
+.anhNho:hover {
+  border: 2px solid #007bff; /* Đổi viền khi di chuột qua */
+}
+.muaNgay {
+  margin-right: 15px;
+  background-color: red;  /* Đặt màu nền đỏ */
+  border-color: red;      /* Đặt màu viền đỏ */
+  color: white;           /* Màu chữ trắng */
+}
+
+/* Hiệu ứng khi di chuột */
+.muaNgay:hover {
+  background-color: red;
+  border-color: red;
+}
+.muaNgay {
+  margin-right: 15px;
+  background-color: red;  /* Đặt màu nền đỏ */
+  border-color: red;      /* Đặt màu viền đỏ */
+  color: white;           /* Màu chữ trắng */
+}
+
+/* Hiệu ứng khi di chuột */
+.muaNgay:hover {
+  background-color: red;
+  border-color: red;
+}
+.themGioHang {
+  margin-right: 15px;
+  background-color: white;  /* Đặt màu nền đỏ */
+  border-color: red;      /* Đặt màu viền đỏ */
+  color: red;           /* Màu chữ trắng */
+}
+
+/* Hiệu ứng khi di chuột */
+.themGioHang:hover {
+  background-color: red;
+  border-color: red;
+}
+
+.chuHoTroTong .chuHoTro {
+  font-size: 0.8rem; /* Kích thước chữ nhỏ */
+  text-align: center;
+
+}
+.chuHoTroTong img {
+  margin-bottom: 5px;   /* Khoảng cách giữa icon và chữ */
+}
+.chuHoTroTong {
+  margin-bottom: 10px;  /* Khoảng cách dưới của toàn khối */
+}
+.banChiTietSanPham{
+  margin-top: 30px;
+}
+.banChiTietSanPham table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #8e8e8e;
+}
+.banChiTietSanPham th, td {
+  border: 1px solid #8e8e8e;
+  padding: 8px;
+  text-align: left;
+}
+.banChiTietSanPham th {
+
+  background-color:#F0F0F0;
+}
+.banChiTietSanPham p{
+  margin-left: 10px;
+}
+.banChiTietSanPham li{
+  margin-left: 20px;
+}
+
+
