@@ -14,6 +14,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
 
+
     // Lấy 4 sản phẩm đầu tiên của danh mục "Giày Cao Gót Nữ" (categoryId = 100)
     public List<ProductEntity> getTop4HighHeels() {
         return productRepository.findTop4ByCategoryIdOrderByIdAsc(100); // categoryId = 100
@@ -22,6 +23,7 @@ public class ProductService {
     // Lấy 4 sản phẩm đầu tiên của danh mục "Dép và Sandal Nữ" (categoryId = 101)
     public List<ProductEntity> getTop4Sandals() {
         return productRepository.findTop4ByCategoryIdOrderByIdAsc(101); // categoryId = 101
+
     }
 }
 
