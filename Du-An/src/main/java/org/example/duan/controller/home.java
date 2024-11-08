@@ -16,7 +16,7 @@ public class home {
     private ProductService productService;
 
     // Hiển thị 4 sản phẩm Giày Cao Gót Nữ và Dép & Sandal Nữ
-    @GetMapping("/products/top-by-category")
+    @GetMapping("/")
     public String showTopProductsByCategory(Model model) {
         // Lấy 4 sản phẩm đầu tiên của Giày Cao Gót Nữ (categoryId = 100)
         List<ProductEntity> highHeelsProducts = productService.getTop4HighHeels();
