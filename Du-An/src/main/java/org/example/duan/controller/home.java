@@ -15,10 +15,21 @@ public class home {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/category/{categoryId}/top4-products")
-    public String getTop4ProductsByCategory(@PathVariable Integer categoryId, Model model) {
-        List<ProductEntity> topProducts = productService.getTop4ProductsByCategoryId(categoryId);
-        model.addAttribute("topProducts", topProducts);
+    // Hiển thị 4 sản phẩm Giày Cao Gót Nữ và Dép & Sandal Nữ
+    @GetMapping("/products/top-by-category")
+    public String showTopProductsByCategory(Model model) {
+        // Lấy 4 sản phẩm đầu tiên của Giày Cao Gót Nữ (categoryId = 100)
+        List<ProductEntity> highHeelsProducts = productService.getTop4HighHeels();
+
+        // Lấy 4 sản phẩm đầu tiên của Dép & Sandal Nữ (categoryId = 101)
+        List<ProductEntity> sandalsProducts = productService.getTop4Sandals();
+
+        // Truyền dữ liệu vào model để hiển thị
+        model.addAttribute("highHeels", highHeelsProducts);  // Đổi tên từ highHeelsProducts thành highHeels
+        model.addAttribute("sandals", sandalsProducts);  // Đổi tên từ sandalsProducts thành sandals
+
         return "index";  // Hiển thị trên trang index hoặc trang mong muốn
     }
+
+
 }
