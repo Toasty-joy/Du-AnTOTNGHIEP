@@ -31,4 +31,5 @@ public class home {
         return "index";  // Hiển thị trên trang index hoặc trang mong muốn
     }
 
+
 }
