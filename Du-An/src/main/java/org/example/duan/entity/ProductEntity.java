@@ -1,25 +1,45 @@
 package org.example.duan.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Products")
 public class ProductEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(length = 255)
     private String image;
+
+    @Column(nullable = false)
     private float price;
+
+    @Column(name = "create_date", nullable = false)
     private LocalDate createDate;
+
+    @Column(nullable = false)
     private int quantity;
-    private boolean isDelete;
+
+    @Column(name = "is_delete", nullable = false)
+    private boolean isDelete = false;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private CategoryEntity category;
+
+    // Automatically sets createDate to the current date before persisting
+    @PrePersist
+    public void prePersist() {
+        if (this.createDate == null) {
+            this.createDate = LocalDate.now();
+        }
+    }
 
     // Getters and Setters
     public int getId() {

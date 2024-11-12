@@ -14,6 +14,6 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
 
 
-    // Truy vấn 4 sản phẩm đầu tiên theo categoryId, sắp xếp theo Id tăng dần
     List<ProductEntity> findTop4ByCategoryIdOrderByIdAsc(Integer categoryId);
+
 }
