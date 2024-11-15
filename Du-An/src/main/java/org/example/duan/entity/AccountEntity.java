@@ -1,39 +1,39 @@
 package org.example.duan.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Entity
-@Table(name = "Accounts")
+@Table(name = "accounts")
 public class AccountEntity {
-
-
         @Id
-        @Column(name = "Username", length = 50, nullable = false)
+        @Column(length = 50)
         private String username;
 
-        @Column(name = "Password", length = 50, nullable = false)
+        @Column(length = 50, nullable = false)
         private String password;
 
-        @Column(name = "Fullname", length = 50, nullable = false)
+        @Column(length = 50, nullable = false)
         private String fullname;
 
-        @Column(name = "Email", length = 50, nullable = false)
+        @Column(length = 50, nullable = false)
         private String email;
 
-        @Column(name = "Photo", length = 50, nullable = false)
+        @Column(length = 50, nullable = false)
         private String photo;
 
-        @Column(name = "Activated", nullable = false)
         private boolean activated;
-
-        @Column(name = "Admin", nullable = false)
         private boolean admin;
 
-        // Getters và Setters
+        @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<CartEntity> carts;
+
+        @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<OrderEntity> orders;
+
+        // Getters and Setters
         public String getUsername() {
                 return username;
         }
@@ -90,4 +90,19 @@ public class AccountEntity {
                 this.admin = admin;
         }
 
+        public List<CartEntity> getCarts() {
+                return carts;
+        }
+
+        public void setCarts(List<CartEntity> carts) {
+                this.carts = carts;
+        }
+
+        public List<OrderEntity> getOrders() {
+                return orders;
+        }
+
+        public void setOrders(List<OrderEntity> orders) {
+                this.orders = orders;
+        }
 }

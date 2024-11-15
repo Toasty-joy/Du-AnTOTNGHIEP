@@ -9,27 +9,22 @@
 
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" >
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="1https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="/static/css/index.css">
+  <link rel="stylesheet" href="../css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
 
-<!--  <script src="../js/hienThiSanPham.js"></script>-->
+  <!--  <script src="../js/hienThiSanPham.js"></script>-->
   <style>
 
   </style>
 </head>
-123123
-<body ng-app="app"
-      ng-controller="ctrl">
-<header>
 
-</header>
-<main></main>
-<footer>
+<body ng-app="app" ng-controller="ctrl">
+
 
   <div class="fullmenu">
 
@@ -37,8 +32,8 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid chu-footer">
           <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                  aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="#"><img src="../img/logo.png" alt="logo" width="100px"></a>
@@ -47,7 +42,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   GIÁ ƯU ĐÃI
                 </a>
                 <ul class="dropdown-menu chu-footer">
@@ -58,7 +54,8 @@
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   GIÀY NỮ
                 </a>
                 <ul class="dropdown-menu chu-footer">
@@ -79,7 +76,8 @@
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   GIÀY NAM
                 </a>
                 <ul class="dropdown-menu chu-footer">
@@ -92,13 +90,15 @@
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   GIÀY CẶP
                 </a>
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   BALO-TÚI
                 </a>
                 <ul class="dropdown-menu chu-footer">
@@ -108,19 +108,22 @@
               </li>
 
               <li class="nav-item dropdown"></li>
-              <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
                 SALE 50%
               </a>
               </li>
 
               <li class="nav-item dropdown"></li>
-              <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                 aria-expanded="false">
                 SẢN PHẨM BÁN CHẠY
               </a>
               </li>
 
               <li class="nav-item dropdown">
-                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
                   PHỤ KIỆN
                 </a>
                 <ul class="dropdown-menu chu-footer">
@@ -192,25 +195,24 @@
 
 
 
-</div>
 <div>
   <div class="d-flex justify-content-center">
-
     <h5>Giày Cao Gót Nữ</h5>
-
   </div>
   <br>
   <div class="container mb-4">
     <div class="row">
+      <!-- Hiển thị 4 sản phẩm Giày Cao Gót Nữ -->
+      <div class="col-6 col-lg-3 mb-4" th:each="item : ${highHeels}">
+        <a th:href="@{/product/{id}(id=${item.id})}">
 
-      <div class="col-6 col-lg-3 mb-4" th:each="item : ${highHeels}"> <!-- Sửa từ productShoes thành highHeels -->
-
-        <a href="#">
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
           <div>
+            <!-- Tên sản phẩm -->
             <p class="TenSP" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
+            <!-- Giá sản phẩm -->
             <h4 th:text="${#numbers.formatInteger(item.price, 0)} + 'đ'">Giá</h4>
           </div>
         </a>
@@ -218,40 +220,50 @@
     </div>
   </div>
 
+  <!-- Liên kết "Xem tất cả" cho Giày Cao Gót Nữ -->
   <div class="d-flex justify-content-center tatca">
-
-    <a href="#">Xem tất cả Giày Cao Gót Nữ</a>
+    <a th:href="@{/category/100}">Xem tất cả Giày Cao Gót Nữ</a>
   </div>
+
   <br>
   <hr>
+
+  <!-- Dép & Sandal Nữ -->
   <div class="d-flex justify-content-center">
     <h5>Dép & Sandal Nữ</h5>
   </div>
   <br>
   <div class="container mb-4">
     <div class="row">
-      <div class="col-6 col-lg-3 mb-4" th:each="item : ${sandals}"> <!-- Sửa từ productSandals thành sandals -->
-        <a href="#">
+      <!-- Hiển thị 4 sản phẩm Dép & Sandal Nữ -->
+      <div class="col-6 col-lg-3 mb-4" th:each="item : ${sandals}">
+        <a th:href="@{/product/{id}(id=${item.id})}">
+          <!-- Hình ảnh sản phẩm -->
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
           <div>
+            <!-- Tên sản phẩm -->
             <p class="TenSP" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
+            <!-- Giá sản phẩm -->
             <h4 th:text="${#numbers.formatInteger(item.price, 0)} + 'đ'">Giá</h4>
           </div>
         </a>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center tatca">
-    <a href="#">Xem tất cả Dép & Sandal Nữ</a>
-  </div>
 
+  <!-- Liên kết "Xem tất cả" cho Dép & Sandal Nữ -->
+  <div class="d-flex justify-content-center tatca">
+    <a th:href="@{/category/101}">Xem tất cả Dép & Sandal Nữ</a>
+  </div>
 
   <br>
   <hr>
-
 </div>
+
+
+
 
 
 <div class="cuoiTrang container">
@@ -271,7 +283,8 @@
     <div class="col-12 col-md-4">
       <div class="TTDH">THÔNG TIN</div>
       <ul class="list-unstyled">
-        <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Thông tin Website thương mại điện tử</a></li>
+        <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Thông tin Website thương mại
+          điện tử</a></li>
         <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Giới thiệu về MWC</a></li>
         <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Than Phiền Góp Ý</a></li>
         <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách và quy định</a></li>
@@ -283,7 +296,8 @@
       <ul class="list-unstyled">
         <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Vận chuyển</a></li>
         <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả</a></li>
-        <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả bảo hành</a></li>
+        <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả bảo hành</a>
+        </li>
       </ul>
       <a href=""><i class="bi bi-facebook custom-icon2"></i></a>
       <a href=""><i class="bi bi-instagram custom-icon2"></i></a>
@@ -303,7 +317,7 @@
       <div class="TTDH">MST:</div>
     </div>
     <div class="col-12 col-md-6 text-end">
-      <a href=""><img src="../../static/css/img/bocongthuong.png" class="BoCongThuong" alt=""></a>
+      <a href=""><img src="../img/bocongthuong.png" class="BoCongThuong" alt=""></a>
     </div>
   </div>
 </div>

@@ -1,28 +1,31 @@
 package org.example.duan.entity;
+
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "Sizes")
+@Table(name = "sizes")
 public class SizeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "number", length = 45, nullable = false)
+    @Column(length = 45, nullable = false)
     private String number;
 
-    @Column(name = "details", columnDefinition = "TEXT")
+    @Column(length = 255)
     private String details;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
 
-    // Getters và Setters
+    @OneToMany(mappedBy = "size")
+    private List<CartEntity> carts;
+
+    @OneToMany(mappedBy = "size")
+    private List<OrderDetailsEntity> orderDetails;
+
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -47,19 +50,20 @@ public class SizeEntity {
         this.details = details;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+
+    public List<CartEntity> getCarts() {
+        return carts;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCarts(List<CartEntity> carts) {
+        this.carts = carts;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public List<OrderDetailsEntity> getOrderDetails() {
+        return orderDetails;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setOrderDetails(List<OrderDetailsEntity> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }

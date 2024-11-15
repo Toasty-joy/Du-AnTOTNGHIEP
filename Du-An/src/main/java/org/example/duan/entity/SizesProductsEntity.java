@@ -1,9 +1,10 @@
 package org.example.duan.entity;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Sizes_Specific_Shoes")
-public class SizeSpecificShoeEntity {
+@Table(name = "sizes")
+public class SizesProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -13,8 +14,8 @@ public class SizeSpecificShoeEntity {
     private SizeEntity size;
 
     @ManyToOne
-    @JoinColumn(name = "specific_shoes_id", nullable = false)
-    private SpecificShoesEntity specificShoe;
+    @JoinColumn(name = "product_id", nullable = false)
+    private ProductEntity product;
 
     // Getters and Setters
     public int getId() {
@@ -33,11 +34,12 @@ public class SizeSpecificShoeEntity {
         this.size = size;
     }
 
-    public SpecificShoesEntity getSpecificShoe() {
-        return specificShoe;
+    public ProductEntity getProduct() {
+        return product;
     }
 
-    public void setSpecificShoe(SpecificShoesEntity specificShoe) {
-        this.specificShoe = specificShoe;
+    public void setProduct(ProductEntity product) {
+        this.product = product;
     }
 }
+

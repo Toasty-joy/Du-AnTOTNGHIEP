@@ -2,22 +2,32 @@ package org.example.duan.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate createDate;
-    private String address;
-    private float total;
-    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "username", nullable = false)
     private AccountEntity account;
+
+    @Column(nullable = false)
+    private Date createDate;  // Use java.sql.Date for this
+
+    @Column(length = 100, nullable = false)
+    private String address;
+
+    private double total;
+
+    private boolean status;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetailsEntity> orderDetails;
 
     // Getters and Setters
     public long getId() {
@@ -28,11 +38,19 @@ public class OrderEntity {
         this.id = id;
     }
 
-    public LocalDate getCreateDate() {
+    public AccountEntity getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountEntity account) {
+        this.account = account;
+    }
+
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -44,11 +62,11 @@ public class OrderEntity {
         this.address = address;
     }
 
-    public float getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
@@ -60,11 +78,11 @@ public class OrderEntity {
         this.status = status;
     }
 
-    public AccountEntity getAccount() {
-        return account;
+    public List<OrderDetailsEntity> getOrderDetails() {
+        return orderDetails;
     }
 
-    public void setAccount(AccountEntity account) {
-        this.account = account;
+    public void setOrderDetails(List<OrderDetailsEntity> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 }

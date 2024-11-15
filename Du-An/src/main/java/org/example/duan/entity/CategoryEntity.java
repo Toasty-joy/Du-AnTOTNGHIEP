@@ -1,32 +1,23 @@
 package org.example.duan.entity;
-
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 public class CategoryEntity {
-
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @Column(name = "name", length = 50, nullable = false)
+        @Column(length = 50, nullable = false)
         private String name;
 
-        @Column(name = "created_at")
-        private LocalDateTime createdAt;
-
-        @Column(name = "updated_at")
-        private LocalDateTime updatedAt;
-
-        @Column(name = "is_delete", nullable = false)
         private boolean isDelete;
 
-        // Getters và Setters
+        @OneToMany(mappedBy = "category")
+        private List<ProductEntity> products;
 
+        // Getters and Setters
         public int getId() {
                 return id;
         }
@@ -43,28 +34,19 @@ public class CategoryEntity {
                 this.name = name;
         }
 
-        public LocalDateTime getCreatedAt() {
-                return createdAt;
-        }
-
-        public void setCreatedAt(LocalDateTime createdAt) {
-                this.createdAt = createdAt;
-        }
-
-        public LocalDateTime getUpdatedAt() {
-                return updatedAt;
-        }
-
-        public void setUpdatedAt(LocalDateTime updatedAt) {
-                this.updatedAt = updatedAt;
-        }
-
         public boolean isDelete() {
                 return isDelete;
         }
 
-        public void setDelete(boolean isDelete) {
-                this.isDelete = isDelete;
+        public void setDelete(boolean delete) {
+                isDelete = delete;
         }
 
+        public List<ProductEntity> getProducts() {
+                return products;
+        }
+
+        public void setProducts(List<ProductEntity> products) {
+                this.products = products;
+        }
 }

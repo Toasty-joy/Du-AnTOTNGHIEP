@@ -4,8 +4,10 @@ import org.example.duan.entity.ProductEntity;
 import org.example.duan.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -13,17 +15,22 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    // Lấy top 4 sản phẩm theo category ID
+    public List<ProductEntity> getTop4ByCategoryId(int categoryId) {
+        return productRepository.findTop4ByCategoryIdOrderByIdAsc(categoryId);
+    }
 
-
-    // Lấy 4 sản phẩm đầu tiên của danh mục "Giày Cao Gót Nữ" (categoryId = 100)
+    // Các phương thức cụ thể cho Giày Cao Gót và Sandal
     public List<ProductEntity> getTop4HighHeels() {
-        return productRepository.findTop4ByCategoryIdOrderByIdAsc(100); // categoryId = 100
+        return getTop4ByCategoryId(100);  // Giày Cao Gót Nữ (categoryId = 100)
     }
 
-    // Lấy 4 sản phẩm đầu tiên của danh mục "Dép và Sandal Nữ" (categoryId = 101)
     public List<ProductEntity> getTop4Sandals() {
-        return productRepository.findTop4ByCategoryIdOrderByIdAsc(101); // categoryId = 101
-
+        return getTop4ByCategoryId(101);  // Dép & Sandal Nữ (categoryId = 101)
     }
-}
+    // Lấy sản phẩm theo ID
+    public ProductEntity getProductById(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
 
+}
