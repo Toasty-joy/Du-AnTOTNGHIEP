@@ -3,6 +3,7 @@ package org.example.duan.controller;
 import org.example.duan.entity.ColorEntity;
 import org.example.duan.entity.ProductEntity;
 import org.example.duan.entity.ShoesImagesEntity;
+import org.example.duan.service.CategoryService;
 import org.example.duan.service.ColorsService;
 import org.example.duan.service.ProductService;
 import org.example.duan.service.ShoesImagesService;
@@ -22,6 +23,8 @@ public class home {
     private ShoesImagesService shoesImageService;
     @Autowired
     private ShoesImagesService shoesImagesService;
+    @Autowired
+    private CategoryService categoryService;
 
 
     // Hiển thị 4 sản phẩm Giày Cao Gót Nữ và Dép & Sandal Nữ
@@ -58,6 +61,21 @@ public class home {
         model.addAttribute("colors", colors);
         return "chiTietSanPhan";  // Trang chi tiết sản phẩm
     }
+
+    @GetMapping("/category/{id}")
+    public String viewCategoryProducts(@PathVariable("id") int categoryId, Model model) {
+        List<ProductEntity> products = productService.getTop4ByCategoryId(categoryId);
+
+        // Lấy thông tin tên danh mục
+        String categoryName = categoryService.getCategoryNameById(categoryId);
+
+        // Thêm dữ liệu vào model để truyền sang view
+        model.addAttribute("products", products);
+        model.addAttribute("categoryName", categoryName);
+
+        return "sanPham"; // Tên file HTML để hiển thị danh sách sản phẩm
+    }
+
 
 
 }
