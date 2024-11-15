@@ -5,6 +5,26 @@
     <title>Title</title>
 </head>
 <body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chi tiết sản phẩm</title>
+</head>
+<body>
+<div class="container">
+    <h2 th:text="${product.name}">Tên sản phẩm</h2>
+    <img th:src="@{/img/{image}(image=${product.image})}" th:alt="${product.name}" style="max-width:300px;">
+
+    <div>
+        <p><strong>Giá:</strong> <span th:text="${#numbers.formatInteger(product.price, 0)} + 'đ'"></span></p>
+        <p><strong>Mô tả:</strong> <span th:text="${product.details}">Mô tả sản phẩm</span></p>
+        <!-- Thêm các chi tiết khác nếu cần -->
+    </div>
+
+    <a href="/">Quay lại trang chủ</a>
+</div>
+</body>
+</html>
 
 </body>
 </html>

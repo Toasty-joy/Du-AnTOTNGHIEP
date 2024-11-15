@@ -168,40 +168,29 @@ img.BoCongThuong{
 }
 
 .mau .color-container {
-  display: flex; /* Đặt các nút nằm chung hàng */
-  align-items: center;
-  margin-left: 10px; /* Khoảng cách giữa tiêu đề và nút chọn */
+  margin-left: 20px;
+  display: flex;
+  gap: 10px; /* Khoảng cách giữa các nút */
 }
 
 .mau .color-button {
-  display: none; /* Ẩn input radio */
+  display: none; /* Ẩn nút radio */
 }
 
-.label-button {
-  width: 30px;
-  height: 30px;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  margin: 5px;
+.mau .label-button img {
+  width: 30px; /* Độ rộng của hình ảnh */
+  height: 30px; /* Chiều cao của hình ảnh */
+  border-radius: 50%; /* Làm tròn hình ảnh */
   cursor: pointer;
-  display: inline-block;
-  background-color: transparent;
+  transition: border 0.3s ease; /* Hiệu ứng chuyển khi thêm viền */
 }
 
-.color-black {
-  background-image: url('img/den.png');
-  background-size: cover;
-}
 
-.color-white {
-  background-image: url('img/trang.png');
-  background-size: cover;
-}
-
-/* Khi input radio được chọn, áp dụng viền đỏ */
-.color-button:checked + .label-button {
+.mau .color-button:checked + .label-button img {
   border: 2px solid red;
 }
+
+
 .size-options {
   display: flex;
   gap: 10px;

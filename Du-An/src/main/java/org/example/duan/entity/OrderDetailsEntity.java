@@ -1,19 +1,24 @@
 package org.example.duan.entity;
-
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "carts")
-public class CartEntity {
+@Table(name = "order_details")
+public class OrderDetailsEntity {
     @Id
-    @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
-    private AccountEntity account;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @Id
+    @ManyToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private OrderEntity order;
+
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
+
+    private double price;
+
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "color_id", nullable = false)
@@ -23,15 +28,21 @@ public class CartEntity {
     @JoinColumn(name = "size_id", nullable = false)
     private SizeEntity size;
 
-    private int quantity;
-
     // Getters and Setters
-    public AccountEntity getAccount() {
-        return account;
+    public long getId() {
+        return id;
     }
 
-    public void setAccount(AccountEntity account) {
-        this.account = account;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.order = order;
     }
 
     public ProductEntity getProduct() {
@@ -40,6 +51,22 @@ public class CartEntity {
 
     public void setProduct(ProductEntity product) {
         this.product = product;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public ColorEntity getColor() {
@@ -56,13 +83,5 @@ public class CartEntity {
 
     public void setSize(SizeEntity size) {
         this.size = size;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }
