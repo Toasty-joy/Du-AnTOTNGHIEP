@@ -204,21 +204,15 @@
             <br>
             <div class="size-options">
                 <h6 class="m-2">Kích thước:</h6>
-                <input type="radio" name="size" id="size35" class="size-option " checked>
-                <label for="size35">35</label>
+                <!-- Kiểm tra kích cỡ trong data -->
+                <div th:each="size : ${sizes}">
+                    <input type="radio" name="size" th:id="'size' + ${size.number}" th:value="${size.number}" class="size-option">
+                    <label th:for="'size' + ${size.number}" th:text="${size.number}"></label>
+                </div>
 
-                <input type="radio" name="size" id="size36" class="size-option">
-                <label for="size36">36</label>
 
-                <input type="radio" name="size" id="size37" class="size-option">
-                <label for="size37">37</label>
-
-                <input type="radio" name="size" id="size38" class="size-option">
-                <label for="size38">38</label>
-
-                <input type="radio" name="size" id="size39" class="size-option">
-                <label for="size39">39</label>
             </div>
+
             <br>
             <!-- Nút kích hoạt modal không có màu -->
             <button type="button" class="btn" style="background-color: transparent; border: none; color: #635f5f;"
