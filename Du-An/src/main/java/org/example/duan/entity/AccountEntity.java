@@ -15,13 +15,13 @@ public class AccountEntity {
         @Column(length = 50, nullable = false)
         private String password;
 
-        @Column(length = 50, nullable = false)
+        @Column(length = 50, nullable = true)
         private String fullname;
 
         @Column(length = 50, nullable = false)
         private String email;
 
-        @Column(length = 50, nullable = false)
+        @Column(length = 50, nullable = true)
         private String photo;
 
         private boolean activated;

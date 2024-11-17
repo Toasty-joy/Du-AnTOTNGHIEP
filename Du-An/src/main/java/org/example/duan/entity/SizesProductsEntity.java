@@ -3,7 +3,7 @@ package org.example.duan.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sizes")
+@Table(name = "Sizes_Products")
 public class SizesProductsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

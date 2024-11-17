@@ -311,5 +311,19 @@ img.BoCongThuong{
 .banChiTietSanPham li{
   margin-left: 20px;
 }
+.login{
+  margin-left:200px ;
+  margin-right: 200px;
+}
+.tab-content .tab-pane {
+  min-height: 400px; /* Đặt chiều cao tối thiểu */
+}
+.tab-content {
+  display: flex;
+  flex-direction: column;
+}
+.tab-content .tab-pane {
+  flex-grow: 1; /* Đảm bảo chiều cao của các tab bằng nhau */
+}
 
 
