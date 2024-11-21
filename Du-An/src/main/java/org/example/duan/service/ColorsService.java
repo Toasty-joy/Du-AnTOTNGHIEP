@@ -17,4 +17,13 @@ public class ColorsService {
     public List<ColorEntity> getAllColors() {
         return colorsRepository.findAll();  // Lấy tất cả các màu sắc từ cơ sở dữ liệu
     }
+    // Phương thức tìm Color theo tên
+    public Integer getColorIdByName(String colorName) {
+        ColorEntity color = colorsRepository.findByName(colorName);
+        if (color != null) {
+            return color.getId();
+        } else {
+            throw new IllegalArgumentException("Color not found");
+        }
+    }
 }
