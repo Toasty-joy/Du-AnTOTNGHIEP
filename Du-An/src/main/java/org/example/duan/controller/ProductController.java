@@ -1,78 +1,86 @@
 package org.example.duan.controller;
 
+import jakarta.validation.Valid;
 import org.example.duan.entity.ProductEntity;
-import org.example.duan.service.ProductService;
+import org.example.duan.entity.productDTO;
+import org.example.duan.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
+    @Autowired
+    private ProductRepository productrepo;
+    @GetMapping("/ListSanPham")
+    public String showProductList(Model model){
+        List<ProductEntity> products = productrepo.findAll();
+        model.addAttribute("products", products);
+        return "ListSanPham";
+    }
+    @GetMapping("/create")
+    public String CreateForm(Model model){
+        List<ProductEntity> products = productrepo.findAll();
+        model.addAttribute("products", products);
+        productDTO productdto = new productDTO();
+        model.addAttribute("productDTO",  productdto);
+        return "CreateForm";
+    }
+    @PostMapping("/create")
+    public String CreateProduct(@Valid @ModelAttribute productDTO productdto, BindingResult result, Model model) {
+        if (productdto.getImageFile().isEmpty()) {
+            result.addError(new FieldError("productdto", "imageFile", "Image file is empty"));
+        }
 
-//    @Autowired
-//    private ProductService productService;
-//
-//    // Display all products
-//    @GetMapping
-//    public String getAllProducts(Model model) {
-//        List<ProductEntity> products = productService.getAllProducts();
-//        model.addAttribute("products", products);
-//        return "product-list";
-//    }
-//
-//    // Display form to add a new product
-//    @GetMapping("/new")
-//    public String showCreateProductForm(Model model) {
-//        model.addAttribute("product", new ProductEntity());
-//        return "product-form";
-//    }
-//
-//    // Add a new product
-//    @PostMapping
-//    public String saveProduct(@ModelAttribute("product") ProductEntity product) {
-//        productService.saveProduct(product);
-//        return "redirect:/products";
-//    }
-//
-//    // Display form to update a product
-//    @GetMapping("/edit/{id}")
-//    public String showEditProductForm(@PathVariable int id, Model model) {
-//        ProductEntity product = productService.getProductById(id).orElse(null);
-//        model.addAttribute("product", product);
-//        return "product-form";
-//    }
-//
-//    // Update a product
-//    @PostMapping("/update")
-//    public String updateProduct(@ModelAttribute("product") ProductEntity product) {
-//        productService.saveProduct(product);
-//        return "redirect:/products";
-//    }
-//
-//    // Delete a product
-//    @GetMapping("/delete/{id}")
-//    public String deleteProduct(@PathVariable int id) {
-//        productService.deleteProduct(id);
-//        return "redirect:/products";
-//    }
-//
-//    // Retrieve top 4 products in the "Giày Cao Gót Nữ" category
-//    @GetMapping("/top-high-heels")
-//    public String getTop4HighHeels(Model model) {
-//        List<ProductEntity> topHighHeels = productService.getTop4HighHeels();
-//        model.addAttribute("products", topHighHeels);
-//        return "product-list";
-//    }
-//
-//    // Retrieve top 4 products in the "Dép và Sandal Nữ" category
-//    @GetMapping("/top-sandals")
-//    public String getTop4Sandals(Model model) {
-//        List<ProductEntity> topSandals = productService.getTop4Sandals();
-//        model.addAttribute("products", topSandals);
-//        return "product-list";
-//    }
+        if (result.hasErrors()) {
+            return "CreateForm"; // Return to the form if there are validation errors
+        }
+
+        MultipartFile image = productdto.getImageFile();
+        Date createDate = new Date();
+        String storageFileName = createDate.getTime() + "_" + image.getOriginalFilename();
+
+        try {
+            String uploadDir = "src/main/resources/static/img/"; // Relative path
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath); // Create directory if it doesn't exist
+            }
+            try (InputStream inputStream = image.getInputStream()) {
+                Files.copy(inputStream, uploadPath.resolve(storageFileName), StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Failed to upload image: " + ex.getMessage());
+        }
+
+        // Save the product entity
+        ProductEntity product = new ProductEntity();
+        product.setName(productdto.getName());
+        product.setPrice(productdto.getPrice());
+        product.setQuantity(productdto.getQuantity());
+//        product.setCreateDate(new java.sql.Date(createDate.getTime()));
+        product.setImage(storageFileName);
+        productrepo.save(product);
+
+        return "redirect:/products/ListSanPham"; // Redirect after saving
+    }
+
 }

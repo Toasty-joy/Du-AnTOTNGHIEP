@@ -82,7 +82,10 @@ public class home {
 
         return "sanPham"; // Tên file HTML để hiển thị danh sách sản phẩm
     }
-
+    @GetMapping("/chitiet")
+    public String chitiet(Model model) {
+        return "chiTietSanPhan";
+    }
 
 
 }
