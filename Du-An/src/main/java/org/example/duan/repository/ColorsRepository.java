@@ -8,6 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ColorsRepository extends JpaRepository<ColorEntity, Integer> {
-    List<ColorEntity> findAll();  // Lấy tất cả màu sắc từ cơ sở dữ liệu
+    List<ColorEntity> findAll();
+    // Lấy tất cả màu sắc từ cơ sở dữ liệu
+    ColorEntity findByName(String name);
 }
 

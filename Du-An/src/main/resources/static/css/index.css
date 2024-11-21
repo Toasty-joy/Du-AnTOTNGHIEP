@@ -72,6 +72,20 @@ p.TenSP {
   padding: 0 20px;
   /* Nếu muốn giữ một chút khoảng cách ở hai bên */
 }
+.cart-quantity {
+  position: absolute;
+  top: 20px;
+  right: 1px;
+  background-color: rgba(99, 97, 97, 0.42);
+  color: #ece9e9;
+
+  border-radius: 50%;
+  width: 20px;       /* Fixed width */
+  height: 20px;      /* Fixed height to make it circular */
+  line-height: 20px; /* Vertically center the text */
+  text-align: center; /* Horizontally center the text */
+  font-size: 12px;   /* Adjust the font size */
+}
 
 .chu-footer {
   color: #fff;

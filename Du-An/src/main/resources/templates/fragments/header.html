@@ -1,0 +1,157 @@
+<header th:fragment="header">
+<div class="fullmenu" ng-app="cartApp" ng-controller="CartService">
+
+    <div class="fullmenu">
+
+        <div class="djustify-content-center container ThanhMenu">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid chu-footer">
+                    <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a th:href="@{/}" class="navbar-brand" ><img src="../img/logo.png" alt="logo" width="100px"></a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    GIÁ ƯU ĐÃI
+                                </a>
+                                <ul class="dropdown-menu chu-footer">
+                                    <li><a class="dropdown-item" href="#">79K</a></li>
+                                    <li><a class="dropdown-item" href="#">99K-119K</a></li>
+                                    <li><a class="dropdown-item" href="#">149K-159K</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    GIÀY NỮ
+                                </a>
+                                <ul class="dropdown-menu chu-footer">
+                                    <li><a class="dropdown-item" href="#">GIÀY CAO GÓT</a>
+
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO</a></li>
+                                    <li><a class="dropdown-item" href="#">SANDAL NỮ</a></li>
+                                    <li><a class="dropdown-item" href="#">DÉP SỤC</a>
+
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#"> GIÀY BÚP BÊ & MỌI </a></li>
+                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
+                                    <li><a class="dropdown-item" href="#">DÉP NỮ</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    GIÀY NAM
+                                </a>
+                                <ul class="dropdown-menu chu-footer">
+                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO NAM </a></li>
+                                    <li><a class="dropdown-item" href="#">SANDAL NAM</a></li>
+                                    <li><a class="dropdown-item" href="#">DÉP NAM</a></li>
+                                    <li><a class="dropdown-item" href="#">GIÀY TÂY & SLIP ON</a></li>
+                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    GIÀY CẶP
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    BALO-TÚI
+                                </a>
+                                <ul class="dropdown-menu chu-footer">
+                                    <li><a class="dropdown-item" href="#">BALO LAPTOP, DU LỊCH, THỜI TRANG </a></li>
+                                    <li><a class="dropdown-item" href="#">TÚI DEO CHÉO</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown"></li>
+                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                SALE 50%
+                            </a>
+                            </li>
+
+                            <li class="nav-item dropdown"></li>
+                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                SẢN PHẨM BÁN CHẠY
+                            </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    PHỤ KIỆN
+                                </a>
+                                <ul class="dropdown-menu chu-footer">
+                                    <li><a class="dropdown-item" href="#">VỚ </a></li>
+                                    <li><a class="dropdown-item" href="#">CHAI VỆ SINH GIÀY</a></li>
+                                    <li><a class="dropdown-item" href="#">DÂY GIÀY</a></li>
+                                    <li><a class="dropdown-item" href="#">ĐẾ LÓT</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- Thanh tìm kiếm bình thường (hiển thị trên màn hình lớn) -->
+                    <form class="d-flex d-none d-lg-flex " role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                               aria-describedby="button-addon2">
+                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+
+                    <!-- Icon kính lúp (hiển thị trên màn hình nhỏ) -->
+                    <button class="btn btn-outline-success d-lg-none" id="search-icon" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+
+                    <!-- Thanh tìm kiếm ẩn (hiển thị khi nhấn vào kính lúp trên màn hình nhỏ) -->
+                    <form class="d-flex mt-3 d-none" id="mobile-search-form" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <div class="dangNhap">
+                        <a th:if="${session.loggedInUser == null}" href="/account/login">
+                            <i class="bi bi-person"></i>
+                        </a>
+                        <a th:if="${session.loggedInUser != null}" href="/account/profile">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </div>
+
+                    <div class="gioHang">
+                        <a href="/cart">
+                            <i class="bi bi-cart2"></i>
+                            <!-- Hiển thị số lượng giỏ hàng nếu lớn hơn 0 -->
+                            <span class="cart-quantity" th:text="${totalQuantity}"></span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+</header>

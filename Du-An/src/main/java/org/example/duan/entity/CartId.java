@@ -9,7 +9,11 @@ public class CartId implements Serializable {
     private int colorId;
     private int sizeId;
 
-    // Constructor
+    // Constructor không tham số
+    public CartId() {
+    }
+
+    // Constructor đầy đủ
     public CartId(String username, int productId, int colorId, int sizeId) {
         this.username = username;
         this.productId = productId;
@@ -17,7 +21,40 @@ public class CartId implements Serializable {
         this.sizeId = sizeId;
     }
 
-    // equals and hashCode methods
+    // Getter và Setter
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getColorId() {
+        return colorId;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
+
+    public int getSizeId() {
+        return sizeId;
+    }
+
+    public void setSizeId(int sizeId) {
+        this.sizeId = sizeId;
+    }
+
+    // equals và hashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
