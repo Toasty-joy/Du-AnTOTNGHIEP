@@ -53,20 +53,37 @@ public class home {
 
     @GetMapping("/product/{id}")
     public String viewProductDetails(@PathVariable int id, Model model) {
-        ProductEntity product = productService.getProductById(id);
-        List<ShoesImagesEntity> images = shoesImageService.getTop6ImagesByProductId(id);
-        List<String> colors = shoesImagesService.getColorsByProductId(id);
-        System.out.println("Màu sắc của sản phẩm: " + colors);
-        List<SizeEntity> sizes = sizeService.getSizesByProductId(id);
+        try {
+            // Lấy thông tin sản phẩm theo ID
+            ProductEntity product = productService.getProductById(id);
+            if (product == null) {
+                model.addAttribute("errorMessage", "Sản phẩm không tồn tại.");
+                return "error"; // Trả về trang lỗi nếu không tìm thấy sản phẩm
+            }
 
-        // Đưa dữ liệu vào Model để hiển thị trên trang chi tiết sản phẩm
-        model.addAttribute("product", product);
-        model.addAttribute("images", images);
-        model.addAttribute("colors", colors);
-        model.addAttribute("sizes", sizes);
+            // Lấy danh sách hình ảnh liên quan đến sản phẩm
+            List<ShoesImagesEntity> images = shoesImageService.getTop6ImagesByProductId(id);
 
-        return "chiTietSanPhan";  // Trả về tên view Thymeleaf (chiTietSanPhan.html)
+            // Lấy danh sách màu sắc (theo ID hoặc tên) liên quan đến sản phẩm
+            List<ColorEntity> colors = shoesImageService.getColorEntitiesByProductId(id);
+
+            // Lấy danh sách kích thước liên quan đến sản phẩm
+            List<SizeEntity> sizes = sizeService.getSizesByProductId(id);
+
+            // Đưa dữ liệu vào Model để truyền đến view
+            model.addAttribute("product", product);
+            model.addAttribute("images", images);
+            model.addAttribute("colors", colors);
+            model.addAttribute("sizes", sizes);
+
+            return "chiTietSanPhan"; // Trả về tên view Thymeleaf
+        } catch (Exception e) {
+            // Xử lý ngoại lệ và thông báo lỗi
+            model.addAttribute("errorMessage", "Có lỗi xảy ra khi tải thông tin sản phẩm: " + e.getMessage());
+            return "error"; // Trả về trang lỗi
+        }
     }
+
 
 
     @GetMapping("/category/{id}")

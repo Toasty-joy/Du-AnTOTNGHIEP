@@ -15,132 +15,7 @@
 <body>
 <footer>
 
-    <div class="fullmenu">
-
-        <div class="djustify-content-center container ThanhMenu">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid chu-footer">
-                    <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a th:href="@{/}" class="navbar-brand" ><img src="../img/logo.png" alt="logo" width="100px"></a>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    GIÁ ƯU ĐÃI
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">79K</a></li>
-                                    <li><a class="dropdown-item" href="#">99K-119K</a></li>
-                                    <li><a class="dropdown-item" href="#">149K-159K</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    GIÀY NỮ
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">GIÀY CAO GÓT</a>
-
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO</a></li>
-                                    <li><a class="dropdown-item" href="#">SANDAL NỮ</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP SỤC</a>
-
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#"> GIÀY BÚP BÊ & MỌI </a></li>
-                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP NỮ</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    GIÀY NAM
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO NAM </a></li>
-                                    <li><a class="dropdown-item" href="#">SANDAL NAM</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP NAM</a></li>
-                                    <li><a class="dropdown-item" href="#">GIÀY TÂY & SLIP ON</a></li>
-                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    GIÀY CẶP
-                                </a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    BALO-TÚI
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">BALO LAPTOP, DU LỊCH, THỜI TRANG </a></li>
-                                    <li><a class="dropdown-item" href="#">TÚI DEO CHÉO</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown"></li>
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                SALE 50%
-                            </a>
-                            </li>
-
-                            <li class="nav-item dropdown"></li>
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                SẢN PHẨM BÁN CHẠY
-                            </a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    PHỤ KIỆN
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">VỚ </a></li>
-                                    <li><a class="dropdown-item" href="#">CHAI VỆ SINH GIÀY</a></li>
-                                    <li><a class="dropdown-item" href="#">DÂY GIÀY</a></li>
-                                    <li><a class="dropdown-item" href="#">ĐẾ LÓT</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <!-- Thanh tìm kiếm bình thường (hiển thị trên màn hình lớn) -->
-                    <form class="d-flex d-none d-lg-flex " role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                               aria-describedby="button-addon2">
-                        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                    </form>
-
-                    <!-- Icon kính lúp (hiển thị trên màn hình nhỏ) -->
-                    <button class="btn btn-outline-success d-lg-none" id="search-icon" type="button">
-                        <i class="bi bi-search"></i>
-                    </button>
-
-                    <!-- Thanh tìm kiếm ẩn (hiển thị khi nhấn vào kính lúp trên màn hình nhỏ) -->
-                    <form class="d-flex mt-3 d-none" id="mobile-search-form" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    <div class="dangNhap"><a href="/account/login"><i class="bi bi-person"></i></a></div>
-                    <div class="gioHang"><a href=""><i class="bi bi-cart2"></i></i></a></div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <div th:replace="fragments/header :: header"></div>
     <br>
 
 
@@ -169,8 +44,8 @@
                             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                                 <form action="/account/login" method="POST">
                                     <div class="mb-3">
-                                        <label for="loginEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Nhập email" required>
+                                        <label for="loginEmailOrUsername" class="form-label">Email hoặc Username</label>
+                                        <input type="text" class="form-control" id="loginEmailOrUsername" name="emailOrUsername" placeholder="Nhập email hoặc username" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="loginPassword" class="form-label">Mật khẩu</label>
@@ -203,8 +78,6 @@
                                         <label for="registerConfirmPassword" class="form-label">Xác nhận mật khẩu</label>
                                         <input type="password" class="form-control" id="registerConfirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
                                     </div>
-
-
                                     <button type="submit" class="btn btn-success w-100">Đăng ký</button>
                                 </form>
                             </div>
@@ -240,59 +113,7 @@
     <br>
 
     <hr>
-    <div class="cuoiTrang container">
-        <div class="row">
-
-            <div class="col-12 col-md-4">
-                <div class="TTDH">GỌI MUA HÀNG ONLINE (08:00 - 21: 00 mỗi ngày)</div>
-                <h3>1900.633.349</h3>
-                <div class="thongTin">Tất cả các ngày trong tuần (Trừ tết Âm Lịch)</div>
-                <br>
-                <div class="TTDH">GÓP Ý & KHIẾU NẠI (08:30 - 20:30)</div>
-                <h3>1900.633.349</h3>
-                <div class="thongTin">Tất cả các ngày trong tuần (Trừ tết Âm Lịch)</div>
-                <br>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="TTDH">THÔNG TIN</div>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Thông tin Website thương mại điện tử</a></li>
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Giới thiệu về MWC</a></li>
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Than Phiền Góp Ý</a></li>
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách và quy định</a></li>
-                </ul>
-            </div>
-
-            <div class="col-12 col-md-4">
-                <div class="TTDH">FAQ</div>
-                <ul class="list-unstyled">
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Vận chuyển</a></li>
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả</a></li>
-                    <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả bảo hành</a></li>
-                </ul>
-                <a href=""><i class="bi bi-facebook custom-icon2"></i></a>
-                <a href=""><i class="bi bi-instagram custom-icon2"></i></a>
-                <a href=""><i class="bi bi-youtube custom-icon2"></i></a>
-                <a href=""><i class="bi bi-shop-window custom-icon2"></i></a>
-                <a href=""><i class="bi bi-tiktok custom-icon2"></i></a>
-                <br>
-            </div>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <div class="TTDH">SHOP GIÀY MWC</div>
-                <div class="TTDH">Địa chỉ: VP: 214/14 Nguyễn Trãi, Phường Nguyễn Cư Trinh, Tp Hồ Chí Minh</div>
-                <div class="TTDH">MST:</div>
-            </div>
-            <div class="col-12 col-md-6 text-end">
-                <a href=""><img src="../img/bocongthuong.png" class="BoCongThuong" alt=""></a>
-            </div>
-        </div>
-    </div>
+    <div th:replace="fragments/footer :: footer"></div>
     <br>
 
 

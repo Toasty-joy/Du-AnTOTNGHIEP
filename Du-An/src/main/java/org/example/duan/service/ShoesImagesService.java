@@ -1,5 +1,6 @@
 package org.example.duan.service;
 
+import org.example.duan.entity.ColorEntity;
 import org.example.duan.entity.ShoesImagesEntity;
 import org.example.duan.repository.ShoesImagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +16,27 @@ public class ShoesImagesService {
     private ShoesImagesRepository shoesImageRepository;
 
     // Lấy danh sách các màu sắc của sản phẩm
-    public List<String> getColorsByProductId(Integer productId) {
-        // Lấy tất cả các ảnh của sản phẩm
+    public List<ColorEntity> getColorEntitiesByProductId(Integer productId) {
+        // Lấy danh sách hình ảnh từ sản phẩm
         List<ShoesImagesEntity> images = shoesImageRepository.findByProductId(productId);
-        List<String> colors = new ArrayList<>();
+        List<ColorEntity> colors = new ArrayList<>();
 
-        // Duyệt qua danh sách ảnh và lấy tên màu sắc
         for (ShoesImagesEntity image : images) {
-            // Kiểm tra nếu có màu và màu đó chưa có trong danh sách
-            if (image.getColor() != null && image.getColor().getName() != null && !colors.contains(image.getColor().getName())) {
-                colors.add(image.getColor().getName());
+            // Kiểm tra nếu `color` không null
+            if (image.getColor() != null) {
+                // Kiểm tra xem danh sách `colors` đã chứa màu với ID tương ứng chưa
+                boolean alreadyExists = colors.stream()
+                        .anyMatch(c -> c.getId() == image.getColor().getId());
+
+                if (!alreadyExists) {
+                    colors.add(image.getColor());
+                }
             }
         }
 
         return colors;
     }
+
 
     // Lấy 6 ảnh đầu tiên của sản phẩm (có thể sử dụng trong trường hợp cần)
     public List<ShoesImagesEntity> getTop6ImagesByProductId(Integer productId) {

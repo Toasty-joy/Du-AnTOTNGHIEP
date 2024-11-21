@@ -17,143 +17,11 @@
 </head>
 
 <body>
-<div class="fullmenu">
-
-    <div class="d-flex justify-content-center container ThanhMenu">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid chu-footer">
-                <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a th:href="@{/}" class="navbar-brand" ><img src="../img/logo.png" alt="logo" width="100px"></a>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                GIÁ ƯU ĐÃI
-                            </a>
-                            <ul class="dropdown-menu chu-footer">
-                                <li><a class="dropdown-item" href="#">79K</a></li>
-                                <li><a class="dropdown-item" href="#">99K-119K</a></li>
-                                <li><a class="dropdown-item" href="#">149K-159K</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                GIÀY NỮ
-                            </a>
-                            <ul class="dropdown-menu chu-footer">
-                                <li><a class="dropdown-item" href="#">GIÀY CAO GÓT</a>
-
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">GIÀY THỂ THAO</a></li>
-                                <li><a class="dropdown-item" href="#">SANDAL NỮ</a></li>
-                                <li><a class="dropdown-item" href="#">DÉP SỤC</a>
-
-                                </li>
-
-                                <li><a class="dropdown-item" href="#"> GIÀY BÚP BÊ & MỌI </a></li>
-                                <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                                <li><a class="dropdown-item" href="#">DÉP NỮ</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                GIÀY NAM
-                            </a>
-                            <ul class="dropdown-menu chu-footer">
-                                <li><a class="dropdown-item" href="#">GIÀY THỂ THAO NAM </a></li>
-                                <li><a class="dropdown-item" href="#">SANDAL NAM</a></li>
-                                <li><a class="dropdown-item" href="#">DÉP NAM</a></li>
-                                <li><a class="dropdown-item" href="#">GIÀY TÂY & SLIP ON</a></li>
-                                <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                GIÀY CẶP
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                BALO-TÚI
-                            </a>
-                            <ul class="dropdown-menu chu-footer">
-                                <li><a class="dropdown-item" href="#">BALO LAPTOP, DU LỊCH, THỜI TRANG </a></li>
-                                <li><a class="dropdown-item" href="#">TÚI DEO CHÉO</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown"></li>
-                        <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            SALE 50%
-                        </a>
-                        </li>
-
-                        <li class="nav-item dropdown"></li>
-                        <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            SẢN PHẨM BÁN CHẠY
-                        </a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                PHỤ KIỆN
-                            </a>
-                            <ul class="dropdown-menu chu-footer">
-                                <li><a class="dropdown-item" href="#">VỚ </a></li>
-                                <li><a class="dropdown-item" href="#">CHAI VỆ SINH GIÀY</a></li>
-                                <li><a class="dropdown-item" href="#">DÂY GIÀY</a></li>
-                                <li><a class="dropdown-item" href="#">ĐẾ LÓT</a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <!-- Thanh tìm kiếm bình thường (hiển thị trên màn hình lớn) -->
-                <form class="d-flex d-none d-lg-flex " role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
-                </form>
-
-                <!-- Icon kính lúp (hiển thị trên màn hình nhỏ) -->
-                <button class="btn btn-outline-success d-lg-none" id="search-icon" type="button">
-                    <i class="bi bi-search"></i>
-                </button>
-
-                <!-- Thanh tìm kiếm ẩn (hiển thị khi nhấn vào kính lúp trên màn hình nhỏ) -->
-                <form class="d-flex mt-3 d-none" id="mobile-search-form" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <div class="dangNhap"><a href=""><i class="bi bi-person"></i></a></div>
-                <div class="gioHang"><a href=""><i class="bi bi-cart2"></i></a></div>
-            </div>
-        </nav>
-    </div>
-</div>
+<div th:replace="fragments/header :: header"></div>
 <br>
 <br>
 <div class="TrangGiua container " th:object="${product}">
+    <form action="/cart/add" method="POST">
     <div class="row">
         <div class="col-lg-6">
             <div class="image-container mb-3">
@@ -169,9 +37,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6"  >
             <br>
            <h2 th:text="*{name}">Tên sản phẩm </h2>
+            <input type="hidden" name="productId" th:value="${product.id}">
+            <input type="number" name="quantity" value="1" min="1" class="form-control" required style="display: none;" id="quantityInput">
+
             <br>
             <div>
                 <span class="ratingDanhGia">★★★★☆</span>
@@ -179,36 +50,43 @@
                 <span class="textDanhGia">1201 Số lượng thích</span>
             </div>
             <br>
-            <div class="tien" th:text="*{#numbers.formatInteger(price, 0)} + 'đ'">giái
+            <div class="tien" th:text="*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')} + 'đ'">giái
 
             </div>
             <br>
             <div class="container mau">
                 <h6>Màu:</h6>
                 <div class="color-container">
-                    <div th:each="color : ${colors}">
+                    <div th:each="color, iterStat : ${colors}">
                         <input type="radio"
-                               th:id="'color_' + ${color}"
-                               th:name="'color'"
+                               th:id="'color_' + ${color.id}"
+                               th:name="colorId"
+                               th:value="${color.id}"
                                class="color-button"
-                               th:checked="${color == 'trang'}"> <!-- Màu mặc định -->
-                        <label th:for="'color_' + ${color}" class="label-button">
+                               th:checked="${iterStat.index == 0}"> <!-- Đánh dấu màu sắc đầu tiên -->
+                        <label th:for="'color_' + ${color.id}" class="label-button">
                             <!-- Hiển thị hình ảnh tương ứng với màu -->
-                            <img th:src="@{'/img/' + ${color.toLowerCase()} + '.png'}"
-                                 th:alt="|Màu ${color}|">
+                            <img th:src="@{'/img/' + ${color.name.toLowerCase()} + '.png'}"
+                                 th:alt="|Màu ${color.name}|">
                         </label>
                     </div>
                 </div>
+
             </div>
 
             <br>
             <div class="size-options">
                 <h6 class="m-2">Kích thước:</h6>
-                <!-- Kiểm tra kích cỡ trong data -->
-                <div th:each="size : ${sizes}">
-                    <input type="radio" name="size" th:id="'size' + ${size.number}" th:value="${size.number}" class="size-option">
-                    <label th:for="'size' + ${size.number}" th:text="${size.number}"></label>
+                <div th:each="size, iterStat : ${sizes}">
+                    <input type="radio"
+                           name="sizeId"
+                           th:id="'size_' + ${size.id}"
+                           th:value="${size.id}"
+                           class="size-option"
+                           th:checked="${iterStat.index == 0}"> <!-- Kiểm tra nếu là kích thước đầu tiên -->
+                    <label th:for="'size_' + ${size.id}" th:text="${size.number}"></label>
                 </div>
+
 
 
             </div>
@@ -283,8 +161,9 @@
                 </div>
             </div>
             <div class="container mt-5">
-                <button type="button" class="btn muaNgay">Mua ngay</button>
-                <button type="button" class="btn themGioHang "><i class="bi bi-cart2"></i> thêm vào giỏ hàng
+
+                <button type="submit" class="btn themGioHang">
+                    <i class="bi bi-cart2"></i> Mua ngay
                 </button>
             </div>
             <br>
@@ -373,64 +252,12 @@
             </table>
         </div>
     </div>
+    </form>
 </div>
 <br>
 <hr>
 <br>
-<div class="cuoiTrang container">
-    <div class="row">
-
-        <div class="col-12 col-md-4">
-            <div class="TTDH">GỌI MUA HÀNG ONLINE (08:00 - 21: 00 mỗi ngày)</div>
-            <h3>1900.633.349</h3>
-            <div class="thongTin">Tất cả các ngày trong tuần (Trừ tết Âm Lịch)</div>
-            <br>
-            <div class="TTDH">GÓP Ý & KHIẾU NẠI (08:30 - 20:30)</div>
-            <h3>1900.633.349</h3>
-            <div class="thongTin">Tất cả các ngày trong tuần (Trừ tết Âm Lịch)</div>
-            <br>
-        </div>
-
-        <div class="col-12 col-md-4">
-            <div class="TTDH">THÔNG TIN</div>
-            <ul class="list-unstyled">
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Thông tin Website thương mại điện
-                    tử</a></li>
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Giới thiệu về MWC</a></li>
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Than Phiền Góp Ý</a></li>
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách và quy định</a></li>
-            </ul>
-        </div>
-
-        <div class="col-12 col-md-4">
-            <div class="TTDH">FAQ</div>
-            <ul class="list-unstyled">
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Vận chuyển</a></li>
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả</a></li>
-                <li><i class="fas fa-chevron-right custom-icon"></i> <a href="">Chính sách đổi trả bảo hành</a></li>
-            </ul>
-            <a href=""><i class="bi bi-facebook custom-icon2"></i></a>
-            <a href=""><i class="bi bi-instagram custom-icon2"></i></a>
-            <a href=""><i class="bi bi-youtube custom-icon2"></i></a>
-            <a href=""><i class="bi bi-shop-window custom-icon2"></i></a>
-            <a href=""><i class="bi bi-tiktok custom-icon2"></i></a>
-            <br>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <div class="row">
-        <div class="col-12 col-md-6">
-            <div class="TTDH">SHOP GIÀY MWC</div>
-            <div class="TTDH">Địa chỉ: VP: 214/14 Nguyễn Trãi, Phường Nguyễn Cư Trinh, Tp Hồ Chí Minh</div>
-            <div class="TTDH">MST:</div>
-        </div>
-        <div class="col-12 col-md-6 text-end">
-            <a href=""><img src="../img/bocongthuong.png" class="BoCongThuong" alt=""></a>
-        </div>
-    </div>
-</div>
+<div th:replace="fragments/footer :: footer"></div>
 <br>
 <script>
     function changeImage(newSrc) {
