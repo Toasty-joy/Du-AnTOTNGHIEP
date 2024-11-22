@@ -21,14 +21,26 @@ public class AccountEntity {
         @Column(length = 50, nullable = false)
         private String email;  // Email
 
-        @Column(length = 50, nullable = true)
+        @Column(length = 255, nullable = true)
         private String photo;  // Ảnh đại diện
 
+        @Column(nullable = false)
         private boolean activated;  // Trạng thái kích hoạt tài khoản
+
+        @Column(nullable = false)
         private boolean admin;  // Vai trò (Quản trị viên hay Người dùng)
 
         @Column(name = "birthdate", nullable = true)
         private LocalDate birthdate;  // Ngày tháng năm sinh
+
+        @Column(length = 20, nullable = true)
+        private String phone;  // Số điện thoại
+
+        @Column(length = 255, nullable = true)
+        private String address;  // Địa chỉ
+
+        @Column(nullable = true)
+        private Boolean gender;  // Giới tính: 0 (Nam), 1 (Nữ)
 
         @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<CartEntity> carts;  // Danh sách giỏ hàng
@@ -101,6 +113,30 @@ public class AccountEntity {
                 this.birthdate = birthdate;
         }
 
+        public String getPhone() {
+                return phone;
+        }
+
+        public void setPhone(String phone) {
+                this.phone = phone;
+        }
+
+        public String getAddress() {
+                return address;
+        }
+
+        public void setAddress(String address) {
+                this.address = address;
+        }
+
+        public Boolean getGender() {
+                return gender;
+        }
+
+        public void setGender(Boolean gender) {
+                this.gender = gender;
+        }
+
         public List<CartEntity> getCarts() {
                 return carts;
         }
@@ -116,5 +152,4 @@ public class AccountEntity {
         public void setOrders(List<OrderEntity> orders) {
                 this.orders = orders;
         }
-
 }

@@ -12,65 +12,68 @@ public class AccountService {
     public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
+
+    // Đăng nhập và trả về tài khoản
     public AccountEntity loginAndReturnAccount(String emailOrUsername, String password) {
         AccountEntity account = accountRepository.findByEmailOrUsername(emailOrUsername);
-
-        // Kiểm tra tài khoản có tồn tại
-        if (account == null || !account.getPassword().equals(password)) {
-            return null; // Trả về null nếu thông tin không hợp lệ
+        if (account == null || !account.getPassword().equals(password) || !account.isActivated()) {
+            return null;
         }
-
-        // Kiểm tra trạng thái kích hoạt
-        if (!account.isActivated()) {
-            return null; // Trả về null nếu tài khoản chưa được kích hoạt
-        }
-
-        return account; // Trả về đối tượng tài khoản nếu hợp lệ
+        return account;
     }
-    public String login(String emailOrUsername, String password) {
-        // Tìm tài khoản bằng email hoặc username
-        AccountEntity account = accountRepository.findByEmailOrUsername(emailOrUsername);
 
-        // Kiểm tra tài khoản có tồn tại
+    // Xử lý logic đăng nhập
+    public String login(String emailOrUsername, String password) {
+        AccountEntity account = accountRepository.findByEmailOrUsername(emailOrUsername);
         if (account == null) {
             return "Tên đăng nhập hoặc mật khẩu không đúng!";
         }
-
-        // Kiểm tra mật khẩu (nên sử dụng mã hóa để đảm bảo an toàn)
         if (!account.getPassword().equals(password)) {
             return "Tên đăng nhập hoặc mật khẩu không đúng!";
         }
-
-        // Kiểm tra tài khoản đã được kích hoạt
         if (!account.isActivated()) {
             return "Tài khoản của bạn chưa được kích hoạt!";
         }
-
         return "Đăng nhập thành công!";
     }
 
+    // Xử lý logic đăng ký
     public String register(AccountEntity accountEntity, String password, String confirmPassword) {
-        // Kiểm tra mật khẩu và xác nhận mật khẩu
         if (!password.equals(confirmPassword)) {
             return "Mật khẩu và xác nhận mật khẩu không khớp!";
         }
-
-        // Kiểm tra xem email đã tồn tại chưa
         if (accountRepository.existsByEmail(accountEntity.getEmail())) {
             return "Email đã được sử dụng!";
         }
 
-        // Mã hóa mật khẩu để đảm bảo an toàn
-        accountEntity.setPassword(password); // Thay bằng mã hóa nếu cần (ví dụ: BCrypt)
+        accountEntity.setPassword(password); // Thêm mã hóa nếu cần
+        accountEntity.setAdmin(false);
+        accountEntity.setActivated(true);
 
-        // Thiết lập trạng thái mặc định
-        accountEntity.setAdmin(false); // Mặc định là người dùng bình thường
-        accountEntity.setActivated(true); // Mặc định tài khoản được kích hoạt
-
-        // Lưu tài khoản mới vào cơ sở dữ liệu
         accountRepository.save(accountEntity);
         return "Đăng ký thành công!";
     }
 
+    // Cập nhật tài khoản
+    public void updateAccount(AccountEntity account) {
+        accountRepository.save(account);
+    }
 
+    // Phương thức thay đổi mật khẩu
+    public String changePassword(AccountEntity account, String oldPassword, String newPassword, String confirmNewPassword) {
+        // Kiểm tra mật khẩu cũ
+        if (!account.getPassword().equals(oldPassword)) {
+            return "Mật khẩu cũ không chính xác!";
+        }
+
+        // Kiểm tra mật khẩu mới và xác nhận mật khẩu mới
+        if (!newPassword.equals(confirmNewPassword)) {
+            return "Mật khẩu mới và xác nhận mật khẩu không khớp!";
+        }
+
+        // Cập nhật mật khẩu mới
+        account.setPassword(newPassword);
+        accountRepository.save(account);
+        return "Mật khẩu đã được thay đổi thành công!";
+    }
 }

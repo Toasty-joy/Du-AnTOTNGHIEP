@@ -25,18 +25,18 @@
                th:errors="${productDTO.name}"></p>
         </div>
 
-<!--        <div class="mb-4">-->
-<!--            <label class="form-label text-light" >Category:</label>-->
-<!--            <div class="col-sm-8">-->
-<!--                <select class="form-select" th:field="${productDTO.category}">-->
-<!--                        <option value="100">100</option>-->
-<!--                        <option value="101">101</option>-->
-<!--                        <option value="102">102</option>-->
-<!--                </select>-->
-<!--                <p th:if="${#fields.hasErrors('category')}" th:errorclass="text-danger"-->
-<!--                   th:errors="${productDTO.category}"></p>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="mb-4">
+            <label class="form-label text-light" >Category:</label>
+            <div class="col-sm-8">
+                <select class="form-select" th:field="${productDTO.category}">
+
+                        <option value="101">101</option>
+                        <option value="102">102</option>
+                </select>
+                <p th:if="${#fields.hasErrors('category')}" th:errorclass="text-danger"
+                   th:errors="${productDTO.category}"></p>
+            </div>
+        </div>
 
         <div class="mb-4">
             <label class="form-label text-light">Price:</label>

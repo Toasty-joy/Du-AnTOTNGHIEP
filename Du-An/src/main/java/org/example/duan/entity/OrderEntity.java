@@ -1,40 +1,45 @@
 package org.example.duan.entity;
 
 import jakarta.persistence.*;
-
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "Orders")
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "username", nullable = false)
     private AccountEntity account;
 
-    @Column(nullable = false)
-    private Date createDate;  // Use java.sql.Date for this
+    @Column(name = "create_date", nullable = false)
+    private LocalDateTime createDate;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "address", nullable = false, length = 100)
     private String address;
 
-    private double total;
+    @Column(name = "phone", nullable = false, length = 15)  // Add the phone column
+    private String phone;
 
+    @Column(name = "total", nullable = false, precision = 10, scale = 2)
+    private BigDecimal total;
+
+    @Column(name = "status", nullable = false)
     private boolean status;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetailsEntity> orderDetails;
 
     // Getters and Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,11 +51,11 @@ public class OrderEntity {
         this.account = account;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
@@ -62,11 +67,19 @@ public class OrderEntity {
         this.address = address;
     }
 
-    public double getTotal() {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 

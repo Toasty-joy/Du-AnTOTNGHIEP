@@ -104,6 +104,9 @@ public class CartService {
             }
         }
     }
-
+    public void clearCart(String username) {
+        List<CartEntity> cartItems = cartRepository.findByUsername(username);
+        cartRepository.deleteAll(cartItems); // Xóa tất cả các sản phẩm trong giỏ hàng
+    }
 
 }

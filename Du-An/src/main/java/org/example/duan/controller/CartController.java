@@ -1,10 +1,10 @@
 package org.example.duan.controller;
 
+
 import jakarta.servlet.http.HttpSession;
-import org.example.duan.entity.AccountEntity;
-import org.example.duan.entity.CartEntity;
-import org.example.duan.entity.ProductEntity;
+import org.example.duan.entity.*;
 import org.example.duan.service.CartService;
+import org.example.duan.service.OrderService;
 import org.example.duan.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -21,10 +23,12 @@ public class CartController {
 
     private final CartService cartService;
     private final ProductService productService;
+    private final OrderService orderService;
 
-    public CartController(CartService cartService, ProductService productService) {
+    public CartController(CartService cartService, ProductService productService, OrderService orderService) {
         this.cartService = cartService;
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -160,7 +164,10 @@ public class CartController {
         return "redirect:/cart";
     }
 
-
-
-
 }
+
+
+
+
+
+

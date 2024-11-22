@@ -1,12 +1,14 @@
 package org.example.duan.entity;
+
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order_details")
+@Table(name = "Order_Details")
 public class OrderDetailsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
@@ -16,8 +18,10 @@ public class OrderDetailsEntity {
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
 
-    private double price;
+    @Column(name = "price", nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @ManyToOne
@@ -29,11 +33,11 @@ public class OrderDetailsEntity {
     private SizeEntity size;
 
     // Getters and Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,11 +57,11 @@ public class OrderDetailsEntity {
         this.product = product;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
