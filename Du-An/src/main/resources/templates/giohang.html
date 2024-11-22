@@ -7,18 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="1https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="path/to/all.min.css">
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-<br>
-
 <br>
 <h2 class="d-flex justify-content-center">Giỏ Hàng Của Bạn</h2>
 <br>
@@ -43,14 +36,14 @@
             <div class="col-1 font-weight-bold">Hành Động</div>
         </div>
 
-        <div class="cart-items ">
+        <div class="cart-items">
             <!-- Lặp qua mỗi mặt hàng trong giỏ -->
             <div th:each="cartItem : ${cartItems}" class="row mb-3 border-bottom d-flex justify-content-center">
                 <div class="col-2">
-                    <img th:src="@{'/images/' + ${cartItem.product.image}}" alt="Ảnh Sản Phẩm" class="img-fluid" style="max-width: 100px;">
+                    <img th:src="@{'/img/' + ${cartItem.product.image}}" alt="Ảnh Sản Phẩm" class="img-fluid" style="max-width: 100px;">
                 </div>
                 <div class="col-2" th:text="${cartItem.product.name}"></div>
-                <div class="col-1" th:text="*{#numbers.formatDecimal(cartItem.product.price, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
+                <div class="col-1" th:text="${#numbers.formatDecimal(cartItem.product.price, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
                 <div class="col-2 d-flex justify-content-center">
                     <form th:action="@{/cart/updateQuantity}" method="post" class="d-flex align-items-center text-center">
                         <input type="hidden" name="productId" th:value="${cartItem.product.id}">
@@ -70,14 +63,11 @@
                             <p class="text-danger">Sản phẩm này đã hết hàng và sẽ bị xóa khỏi giỏ hàng.</p>
                         </div>
                     </form>
-
-
                 </div>
-
 
                 <div class="col-1" th:text="${cartItem.color.name}"></div>
                 <div class="col-1" th:text="${cartItem.size.number}"></div>
-                <div class="col-1" th:text="*{#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
+                <div class="col-1" th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
                 <div class="col-1">
                     <form th:action="@{/cart/remove}" method="post">
                         <input type="hidden" name="productId" th:value="${cartItem.product.id}">
@@ -86,13 +76,22 @@
                         <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
                     </form>
                 </div>
-                <br>
             </div>
+
             <div class="row mt-4">
                 <div class="col-12 text-end">
-                    <form th:action="@{/checkout}" method="get">
+                    <form th:action="@{/checkout}" method="post">
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Địa Chỉ</label>
+                            <input type="text" id="address" name="address" class="form-control" required>
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="phone" class="form-label">Số Điện Thoại</label>
+                            <input type="text" id="phone" name="phone" class="form-control" required>
+                        </div>
                         <button type="submit" class="btn btn-success btn-lg">Thanh Toán</button>
                     </form>
+
                 </div>
             </div>
         </div>
