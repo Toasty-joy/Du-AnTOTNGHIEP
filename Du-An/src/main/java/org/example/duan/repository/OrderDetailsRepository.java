@@ -11,5 +11,4 @@ public interface OrderDetailsRepository extends JpaRepository<OrderDetailsEntity
     // Truy vấn để lấy tất cả các chi tiết đơn hàng theo id đơn hàng
     List<OrderDetailsEntity> findByOrderId(Long orderId);
 
-    // Thêm các truy vấn tùy chỉnh nếu cần
 }

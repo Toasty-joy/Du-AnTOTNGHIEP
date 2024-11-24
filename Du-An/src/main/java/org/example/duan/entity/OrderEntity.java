@@ -22,14 +22,17 @@ public class OrderEntity {
     @Column(name = "address", nullable = false, length = 100)
     private String address;
 
-    @Column(name = "phone", nullable = false, length = 15)  // Add the phone column
+    @Column(name = "phone", nullable = false, length = 20)  // Thêm cột số điện thoại
     private String phone;
 
     @Column(name = "total", nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
 
     @Column(name = "status", nullable = false)
-    private boolean status;
+    private int status;  // 0: Đang xử lý, 1: Đang giao, 2: Đã nhận, 3: Đã hủy
+
+    @Column(name = "payment_method", nullable = false)
+    private int paymentMethod; // 0: Thanh toán khi nhận hàng, 1: Thanh toán qua VNPay
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetailsEntity> orderDetails;
@@ -83,12 +86,20 @@ public class OrderEntity {
         this.total = total;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(int paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public List<OrderDetailsEntity> getOrderDetails() {

@@ -166,7 +166,7 @@ public class AccountsController {
                                  HttpSession session, Model model) {
         AccountEntity loggedInUser = (AccountEntity) session.getAttribute("loggedInUser");
         if (loggedInUser == null) {
-            return "redirect:/account/login";
+            return "redirect:/account/login"; // Nếu không có tài khoản đang đăng nhập, chuyển đến trang đăng nhập
         }
 
         // Gọi service để thay đổi mật khẩu
@@ -175,11 +175,13 @@ public class AccountsController {
         // Thêm thông báo vào model
         model.addAttribute("passwordChangeMessage", message);
 
-        // Cập nhật tài khoản sau khi thay đổi mật khẩu
-        model.addAttribute("account", loggedInUser);
-
-        // Trả về trang hồ sơ với modal thông báo
-        return "HoSoNguoiDung";
+        // Trả về trang hồ sơ với thông báo kết quả
+        return "password"; // Đây là trang "password.html"
     }
+    @GetMapping("/password")
+    public String showChangePasswordForm() {
+        return "password"; // The view with the form for changing password
+    }
+
 
 }

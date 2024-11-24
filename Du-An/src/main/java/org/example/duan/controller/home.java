@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -99,10 +100,17 @@ public class home {
 
         return "sanPham"; // Tên file HTML để hiển thị danh sách sản phẩm
     }
+
     @GetMapping("/chitiet")
     public String chitiet(Model model) {
         return "chiTietSanPhan";
     }
 
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("query") String query, Model model) {
+        List<ProductEntity> products = productService.searchProducts(query);
+        model.addAttribute("products", products);
+        return "index2"; // Trả về view hiển thị kết quả tìm kiếm
+    }
 
 }

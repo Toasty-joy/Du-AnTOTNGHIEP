@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
     List<ProductEntity> findTop4ByCategoryIdOrderByIdAsc(Integer categoryId);
+    List<ProductEntity> findByNameContainingIgnoreCase(String name);
 
 }
 

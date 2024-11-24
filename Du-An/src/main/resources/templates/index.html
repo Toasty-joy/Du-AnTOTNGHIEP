@@ -77,9 +77,8 @@
         <a th:href="@{/product/{id}(id=${item.id})}">
 
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
-          <div>
-            <!-- Tên sản phẩm -->
-            <p class="TenSP" th:text="${item.name}">Tên sản phẩm</p>
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <!-- Giá sản phẩm -->
@@ -111,9 +110,9 @@
         <a th:href="@{/product/{id}(id=${item.id})}">
           <!-- Hình ảnh sản phẩm -->
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
-          <div>
-            <!-- Tên sản phẩm -->
-            <p class="TenSP" th:text="${item.name}">Tên sản phẩm</p>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
             <!-- Giá sản phẩm -->
