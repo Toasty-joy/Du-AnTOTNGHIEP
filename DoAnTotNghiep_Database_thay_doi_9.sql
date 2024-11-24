@@ -91,9 +91,11 @@ CREATE TABLE Orders (
     address VARCHAR(100) NOT NULL,
     phone VARCHAR(20) NOT NULL,  -- Thêm cột số điện thoại
     total DECIMAL(10, 2) NOT NULL,
-    status TINYINT(1) NOT NULL,
+    status INT NOT NULL,  -- Bỏ ràng buộc CHECK
+    payment_method TINYINT(1) NOT NULL,  -- Chỉ có 2 giá trị: 0 hoặc 1
     FOREIGN KEY (username) REFERENCES Accounts(Username)
 );
+
 
 
 -- Create Order_Details Table
