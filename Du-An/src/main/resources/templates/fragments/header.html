@@ -112,10 +112,9 @@
                         </ul>
                     </div>
 
-                    <!-- Thanh tìm kiếm bình thường (hiển thị trên màn hình lớn) -->
-                    <form class="d-flex d-none d-lg-flex " role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
-                               aria-describedby="button-addon2">
+                    <!-- Thanh tìm kiếm trên màn hình lớn -->
+                    <form class="d-flex d-none d-lg-flex" role="search" action="/search" method="get">
+                        <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                     </form>
 
@@ -124,10 +123,10 @@
                         <i class="bi bi-search"></i>
                     </button>
 
-                    <!-- Thanh tìm kiếm ẩn (hiển thị khi nhấn vào kính lúp trên màn hình nhỏ) -->
-                    <form class="d-flex mt-3 d-none" id="mobile-search-form" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <!-- Thanh tìm kiếm trên màn hình nhỏ -->
+                    <form class="d-flex mt-3 d-none" id="mobile-search-form" role="search" action="/search" method="get">
+                        <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Tìm</button>
                     </form>
                     <div class="dangNhap">
                         <a th:if="${session.loggedInUser == null}" href="/account/login">

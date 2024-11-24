@@ -32,6 +32,11 @@ public class ProductService {
     public ProductEntity getProductById(int id) {
         return productRepository.findById(id).orElse(null);
     }
-
+    public void updateProduct(ProductEntity product) {
+        productRepository.save(product); // Lưu lại sản phẩm đã cập nhật số lượng
+    }
+    public List<ProductEntity> searchProducts(String searchTerm) {
+        return productRepository.findByNameContainingIgnoreCase(searchTerm);
+    }
 
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Đơn Hàng</title>
+
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="1https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="path/to/all.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div th:replace="fragments/header :: header"></div>
+    <h2 class="text-center">Chi Tiết Đơn Hàng</h2>
+    <div class="card">
+        <div class="card-header">
+            <h4>Thông Tin Đơn Hàng</h4>
+        </div>
+        <div class="card-body">
+            <p><strong>Mã Đơn Hàng:</strong> <span th:text="${order.id}"></span></p>
+            <p><strong>Ngày Tạo:</strong> <span th:text="${order.createDate}"></span></p>
+            <p><strong>Họ và Tên:</strong> <span th:text="${order.account.fullname}"></span></p>
+            <p><strong>Địa Chỉ Giao Hàng:</strong> <span th:text="${order.address}"></span></p>
+            <p><strong>Số Điện Thoại:</strong> <span th:text="${order.phone}"></span></p>
+            <p><strong>Trạng Thái:</strong>
+                <span th:if="${order.status == 0}">Đang xử lý</span>
+                <span th:if="${order.status == 1}">Đang giao</span>
+                <span th:if="${order.status == 2}">Đã nhận</span>
+                <span th:if="${order.status == 3}">Đã hủy</span>
+            </p>
+            <p><strong>Phương Thức Thanh Toán:</strong>
+                <span th:if="${order.paymentMethod == 0}">Thanh toán khi nhận hàng</span>
+                <span th:if="${order.paymentMethod == 1}">Thanh toán qua VNPay</span>
+            </p>
+            <p><strong>Tổng Tiền:</strong> <span th:text="*{#numbers.formatDecimal(order.total, 0, 'COMMA', 0, 'POINT')} + 'đ'"></span></p>
+        </div>
+    </div>
+
+    <h4 class="mt-4">Danh Sách Sản Phẩm</h4>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Màu Sắc</th>
+            <th>Kích Cỡ</th>
+            <th>Giá</th>
+            <th>Số Lượng</th>
+            <th>Tổng Tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orderDetail : ${order.orderDetails}">
+            <td th:text="${orderDetail.product.id}"></td>
+            <td th:text="${orderDetail.product.name}"></td>
+            <td th:text="${orderDetail.color.name}"></td>
+            <td th:text="${orderDetail.size.number}"></td>
+            <td th:text="*{#numbers.formatDecimal(orderDetail.price, 0, 'COMMA', 0, 'POINT')} + 'đ'"></td>
+            <td th:text="${orderDetail.quantity}"></td>
+            <td th:text="*{#numbers.formatDecimal(orderDetail.price * orderDetail.quantity, 0, 'COMMA', 0, 'POINT')} + 'đ'"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -40,24 +40,32 @@
             <!-- Lặp qua mỗi mặt hàng trong giỏ -->
             <div th:each="cartItem : ${cartItems}" class="row mb-3 border-bottom d-flex justify-content-center">
                 <div class="col-2">
-                    <img th:src="@{'/img/' + ${cartItem.product.image}}" alt="Ảnh Sản Phẩm" class="img-fluid" style="max-width: 100px;">
+                    <img th:src="@{'/img/' + ${cartItem.product.image}}" alt="Ảnh Sản Phẩm" class="img-fluid"
+                         style="max-width: 100px;">
                 </div>
                 <div class="col-2" th:text="${cartItem.product.name}"></div>
-                <div class="col-1" th:text="${#numbers.formatDecimal(cartItem.product.price, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
+                <div class="col-1"
+                     th:text="${#numbers.formatDecimal(cartItem.product.price, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
                 <div class="col-2 d-flex justify-content-center">
-                    <form th:action="@{/cart/updateQuantity}" method="post" class="d-flex align-items-center text-center">
+                    <form th:action="@{/cart/updateQuantity}" method="post"
+                          class="d-flex align-items-center text-center">
                         <input type="hidden" name="productId" th:value="${cartItem.product.id}">
                         <input type="hidden" name="colorId" th:value="${cartItem.color.id}">
                         <input type="hidden" name="sizeId" th:value="${cartItem.size.id}">
 
                         <!-- Các nút trừ và cộng -->
-                        <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary btn-sm">-</button>
+                        <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary btn-sm">
+                            -
+                        </button>
 
                         <!-- Ô nhập số lượng sản phẩm -->
                         <input type="number" name="quantity" th:value="${cartItem.quantity}" min="1"
-                               th:max="${cartItem.product.quantity}" class="form-control form-control-sm text-center" style="width: 60px;">
+                               th:max="${cartItem.product.quantity}" class="form-control form-control-sm text-center"
+                               style="width: 60px;">
 
-                        <button type="submit" name="action" value="increase" class="btn btn-outline-secondary btn-sm">+</button>
+                        <button type="submit" name="action" value="increase" class="btn btn-outline-secondary btn-sm">
+                            +
+                        </button>
 
                         <div th:if="${cartItem.product.quantity == 0}">
                             <p class="text-danger">Sản phẩm này đã hết hàng và sẽ bị xóa khỏi giỏ hàng.</p>
@@ -67,7 +75,8 @@
 
                 <div class="col-1" th:text="${cartItem.color.name}"></div>
                 <div class="col-1" th:text="${cartItem.size.number}"></div>
-                <div class="col-1" th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
+                <div class="col-1"
+                     th:text="${#numbers.formatDecimal(cartItem.product.price * cartItem.quantity, 0, 'COMMA', 0, 'POINT')} + 'đ'"></div>
                 <div class="col-1">
                     <form th:action="@{/cart/remove}" method="post">
                         <input type="hidden" name="productId" th:value="${cartItem.product.id}">
@@ -79,22 +88,44 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-12 text-end">
+                <div class="col-12">
                     <form th:action="@{/checkout}" method="post">
                         <div class="mb-3">
-                            <label for="address" class="form-label">Địa Chỉ</label>
-                            <input type="text" id="address" name="address" class="form-control" required>
+                            <label for="address" class="form-label">Địa Chỉ giao</label>
+                            <input type="text" id="address" name="address" class="form-control" th:value="${address}" required>
                         </div>
-                        <div class="mb-3 ">
+                        <div class="mb-3">
                             <label for="phone" class="form-label">Số Điện Thoại</label>
-                            <input type="text" id="phone" name="phone" class="form-control" required>
+                            <input type="text" id="phone" name="phone" class="form-control" th:value="${phone}" required>
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg">Thanh Toán</button>
-                    </form>
 
+                        <!-- Thanh toán khi nhận hàng -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="0" th:checked="${paymentMethod == 0}">
+                            <label class="form-check-label" for="paymentCOD">
+                                Thanh Toán khi nhận hàng
+                            </label>
+                        </div>
+
+                        <!-- Thanh toán qua VNPay -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVNPay" value="1" th:checked="${paymentMethod == 1}">
+                            <label class="form-check-label" for="paymentVNPay">
+                                Thanh Toán qua VNPay
+                            </label>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-success btn-lg">Thanh Toán</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
+
+
         </div>
+
     </div>
 </div>
 <br>
