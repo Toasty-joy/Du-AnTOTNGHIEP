@@ -1,6 +1,7 @@
 package org.example.duan.entity;
 import jakarta.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "products")
@@ -9,7 +10,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = true)
     private String name;
 
     @Lob
@@ -135,5 +136,11 @@ public class ProductEntity {
 
     public void setOrderDetails(List<OrderDetailsEntity> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+    public List<ColorEntity> getColors() {
+        return shoesImages.stream()
+                .map(ShoesImagesEntity::getColor) // Lấy màu sắc từ ShoesImagesEntity
+                .distinct() // Đảm bảo không có màu sắc trùng lặp
+                .collect(Collectors.toList()); // Thu thập vào danh sách
     }
 }

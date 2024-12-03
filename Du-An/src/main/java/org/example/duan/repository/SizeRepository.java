@@ -14,4 +14,7 @@ public interface SizeRepository extends JpaRepository<SizeEntity, Integer> {
     // Truy vấn để lấy các kích cỡ cho một sản phẩm từ bảng Sizes_Products
     @Query("SELECT s FROM SizeEntity s JOIN SizesProductsEntity sp ON s.id = sp.size.id WHERE sp.product.id = :productId")
     List<SizeEntity> findByProductId(@Param("productId") int productId);
+
+    // Lấy tất cả các kích thước
+    List<SizeEntity> findAll();
 }

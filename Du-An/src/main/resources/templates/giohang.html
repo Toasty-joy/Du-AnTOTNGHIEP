@@ -59,7 +59,7 @@
                         </button>
 
                         <!-- Ô nhập số lượng sản phẩm -->
-                        <input type="number" name="quantity" th:value="${cartItem.quantity}" min="1"
+                        <input type="text" name="quantity" th:value="${cartItem.quantity}" min="1"
                                th:max="${cartItem.product.quantity}" class="form-control form-control-sm text-center"
                                style="width: 60px;">
 
@@ -89,7 +89,18 @@
 
             <div class="row mt-4">
                 <div class="col-12">
+                    <div class="row d-flex justify-content-between tongTien1 align-items-center">
+                        <h4 class="col-10 text-end">Tổng tiền:</h4>
+                        <h4 class="col-2" th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')} + 'đ'"></h4>
+                    </div>
+
+
+                    <br>
+
                     <form th:action="@{/checkout}" method="post">
+
+                        <input type="hidden" name="username" th:value="${session.loggedInUser.username}">
+                        <input type="hidden" name="totalPrice" th:value="${totalPrice}">
                         <div class="mb-3">
                             <label for="address" class="form-label">Địa Chỉ giao</label>
                             <input type="text" id="address" name="address" class="form-control" th:value="${address}" required>
@@ -131,5 +142,7 @@
 <br>
 <hr>
 <div th:replace="fragments/footer :: footer"></div>
+
+
 </body>
 </html>

@@ -11,7 +11,8 @@ public class ShoesImagesEntity {
     @Column(length = 50)
     private String image;
 
-    private boolean orderImage;
+    @Column(columnDefinition = "TINYINT(1) DEFAULT 1") // Mặc định là true trong DB
+    private boolean orderImage = true;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)

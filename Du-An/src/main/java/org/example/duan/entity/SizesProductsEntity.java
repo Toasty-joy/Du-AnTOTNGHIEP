@@ -16,7 +16,6 @@ public class SizesProductsEntity {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
-
     // Getters and Setters
     public int getId() {
         return id;

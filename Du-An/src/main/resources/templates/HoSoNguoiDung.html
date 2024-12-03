@@ -54,41 +54,62 @@
         <div class="col-md-7 col-12">
             <div id="profile" class="profile-content">
                 <h4>Hồ Sơ Của Tôi</h4>
-                <form action="/account/profile/update" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Tên Đăng Nhập</label>
-                        <input type="text" class="form-control" id="username" name="username" th:value="${account.username}" readonly>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fullname" class="form-label">Tên</label>
-                        <input type="text" class="form-control" id="fullname" name="fullname" th:value="${account.fullname}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" th:value="${account.email}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Số Điện Thoại</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" th:value="${account.phone}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Địa Chỉ</label>
-                        <input type="text" class="form-control" id="address" name="address" th:value="${account.address}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="birthdate" class="form-label">Ngày Sinh</label>
-                        <input type="date" class="form-control" id="birthdate" name="birthdate" th:value="${account.birthdate}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="gender" class="form-label">Giới Tính</label>
-                        <select class="form-control" id="gender" name="gender">
-                            <option value="false" th:selected="${account.gender == false}">Nam</option>
-                            <option value="true" th:selected="${account.gender == true}">Nữ</option>
-                            <option value="null" th:selected="${account.gender == null}">Khác</option>
-                        </select>
-                    </div>
+                <form action="/account/profile" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <!-- Left side: Profile Form -->
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Tên Đăng Nhập</label>
+                                <input type="text" class="form-control" id="username" name="username" th:value="${account.username}" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Tên</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" th:value="${account.fullname}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" th:value="${account.email}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Số Điện Thoại</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" th:value="${account.phone}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Địa Chỉ</label>
+                                <input type="text" class="form-control" id="address" name="address" th:value="${account.address}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="birthdate" class="form-label">Ngày Sinh</label>
+                                <input type="date" class="form-control" id="birthdate" name="birthdate" th:value="${account.birthdate}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Giới Tính</label>
+                                <select class="form-control" id="gender" name="gender">
+                                    <option value="false" th:selected="${account.gender == false}">Nam</option>
+                                    <option value="true" th:selected="${account.gender == true}">Nữ</option>
+                                    <option value="null" th:selected="${account.gender == null}">Khác</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Tải Ảnh Đại Diện</label>
+                                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" onchange="previewImage(event)">
+                            </div>
+                            <div class="mb-3">
+                                <img id="avatarPreview" src="#" alt="Ảnh Preview" style="display:none; max-width: 200px; margin-top: 10px;">
+                            </div>
+                            <div id="imageName" style="font-size: 14px; color: gray; margin-top: 5px;"></div>
 
-                    <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+                            <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+                        </div>
+
+                        <!-- Right side: Profile Image -->
+                        <div class="col-md-4 text-center">
+                            <div class="mb-3">
+                                <!-- Using th:src to display the profile photo -->
+                                <img th:src="@{/img/{photo}(photo=${account.photo})}" alt="Ảnh Đại Diện" class="rounded-circle" style="width: 150px; height: 150px;">
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -121,6 +142,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -166,6 +188,20 @@
             notificationModal.show();
         }
     });
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('avatarPreview');
+            output.src = reader.result; // Hiển thị ảnh đã chọn
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+
+        // Hiển thị tên hình ảnh đã chọn
+        var imageName = event.target.files[0].name;
+        document.getElementById('imageName').innerText = "Tên file: " + imageName;
+    }
+
 
 
 </script>
