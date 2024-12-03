@@ -21,7 +21,7 @@ public class AccountsController {
     private final AccountService accountService;
 
     // Đường dẫn thư mục upload ảnh
-    private static final String UPLOAD_DIR = "src/main/resources/static/uploads/";
+    private static final String UPLOAD_DIR = "C:/Users/ASUS/IdeaProjects/Du-AnTOTNGHIEP/Du-An/src/main/resources/static/img/";
 
     public AccountsController(AccountService accountService) {
         this.accountService = accountService;
@@ -34,7 +34,6 @@ public class AccountsController {
         return "login";
     }
 
-    // Xử lý đăng nhập
     @PostMapping("/login")
     public String handleLogin(@RequestParam("emailOrUsername") String emailOrUsername,
                               @RequestParam("password") String password,
@@ -48,10 +47,21 @@ public class AccountsController {
 
         // Lấy thông tin tài khoản và lưu vào session
         AccountEntity account = accountService.loginAndReturnAccount(emailOrUsername, password);
+        if (account == null) {
+            model.addAttribute("notification", "Tên đăng nhập hoặc mật khẩu không đúng!");
+            return "login";
+        }
+
         session.setAttribute("loggedInUser", account);
 
-        return "redirect:/"; // Chuyển về trang chủ
+        // Kiểm tra nếu là admin, chuyển hướng đến trang admin
+        if (account.isAdmin()) {
+            return "redirect:/admin"; // Chuyển hướng đến trang admin
+        }
+
+        return "redirect:/"; // Chuyển hướng đến trang chủ cho người dùng thông thường
     }
+
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();  // Invalidate the session to log the user out
@@ -94,12 +104,13 @@ public class AccountsController {
         if (loggedInUser == null) {
             return "redirect:/account/login";
         }
+
         model.addAttribute("account", loggedInUser);
         return "HoSoNguoiDung";
     }
 
     // Cập nhật hồ sơ
-    @PostMapping("/profile/update")
+    @PostMapping("/profile")
     public String updateProfile(@RequestParam("fullname") String fullname,
                                 @RequestParam("email") String email,
                                 @RequestParam("phone") String phone,
@@ -123,13 +134,17 @@ public class AccountsController {
 
             // Xử lý tải lên ảnh đại diện
             if (photo != null && !photo.isEmpty()) {
-                String fileName = photo.getOriginalFilename();
+                // Tạo tên file duy nhất bằng timestamp
+                String fileName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
                 Path path = Paths.get(UPLOAD_DIR + fileName);
-                Files.copy(photo.getInputStream(), path); // Lưu ảnh vào thư mục uploads
 
-                // Cập nhật đường dẫn ảnh vào trường photo
-                loggedInUser.setPhoto("/uploads/" + fileName); // Đường dẫn ảnh cho client
+                // Lưu file ảnh vào thư mục
+                Files.copy(photo.getInputStream(), path);
+
+                // Cập nhật đường dẫn ảnh vào database
+                loggedInUser.setPhoto(fileName); // Lưu đường dẫn tương đối
             }
+
 
             // Cập nhật giới tính nếu có
             if (gender != null) {

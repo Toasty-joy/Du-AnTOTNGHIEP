@@ -52,7 +52,12 @@ public class CartController {
         // Thêm thông tin vào model
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("totalPrice", totalPrice);
-
+        // Truyền thông tin phone và address vào model
+        model.addAttribute("address", loggedInUser.getAddress());
+        model.addAttribute("phone", loggedInUser.getPhone());
+        // Truyền giá trị paymentMethod vào model mặc định là 0 (Thanh toán khi nhận hàng)
+        model.addAttribute("paymentMethod", 0);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "giohang"; // View giỏ hàng
     }

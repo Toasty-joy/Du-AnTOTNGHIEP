@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <!-- Thêm CSS để tạo giao diện -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="1https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3 class="text-white text-center">Admin Dashboard</h3>
+    <a th:href="@{/admin/dashboard}">Dashboard</a>
+    <a th:href="@{/admin/products}">Quản lý Sản phẩm</a>
+    <a th:href="@{/admin/categories}">Quản lý Danh mục</a>
+    <a th:href="@{/admin/orders}">Quản lý Đơn hàng</a>
+    <a th:href="@{/admin/users}">Quản lý Người dùng</a>
+    <a th:href="@{/admin/settings}">Cài đặt</a>
+</div>
+
+<!-- Nội dung chính -->
+<div class="content adminContent">
+    <div th:fragment="content">
+        <div class="container mt-4">
+            <h2 class="mb-4">Chi Tiết Sản Phẩm</h2>
+
+            <!-- Form chi tiết sản phẩm -->
+            <form action="#" th:action="@{/admin/products/{id}/update(id=${product.id})}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="productId" th:value="${product.id}">
+
+                <!-- Tất cả nằm trong một hàng -->
+                <div class="row align-items-center mb-2">
+                    <!-- Hình ảnh sản phẩm -->
+                    <div class="col-md-12  mb-2">
+                        <label for="productImage">Hình ảnh sản phẩm:</label>
+                        <div>
+                            <!-- Hiển thị ảnh hiện tại -->
+                            <img th:if="${product.image != null}" th:src="@{/img/{image}(image=${product.image})}"
+                                 alt="Hình ảnh sản phẩm" style="width: 200px; height: 200px;">
+                            <p th:if="${product.image == null}">Chưa có ảnh</p>
+                        </div>
+                        <!-- Input để tải ảnh mới -->
+                        <input type="file" class="form-control mt-2" id="Image" name="productImage" accept="image/*">
+                    </div>
+
+                    <!-- Tên sản phẩm -->
+                    <div class="col-md-6 mb-2">
+                        <label for="productName">Tên sản phẩm:</label>
+                        <input type="text" class="form-control" id="productName" name="name" th:value="${product.name}" required>
+                    </div>
+
+                    <!-- Danh mục sản phẩm -->
+                    <div class="col-md-6 mb-2">
+                        <label for="productCategory">Danh mục sản phẩm:</label>
+                        <select class="form-control" id="productCategory" name="category.id">
+                            <option th:each="category : ${categories}"
+                                    th:value="${category.id}"
+                                    th:text="${category.name}"
+                                    th:selected="${category.id == product.category.id}"></option>
+                        </select>
+                    </div>
+
+                    <!-- Giá sản phẩm -->
+                    <div class="col-md-6 mb-2">
+                        <label for="productPrice">Giá sản phẩm:</label>
+                        <input type="text" class="form-control" id="productPrice" name="price" th:value="${product.price}">
+                    </div>
+
+                    <!-- Số lượng sản phẩm -->
+                    <div class="col-md-6 mb-2">
+                        <label for="productQuantity">Số lượng:</label>
+                        <input type="text" class="form-control" id="productQuantity" name="quantity" th:value="${product.quantity}">
+                    </div>
+                </div>
+
+                <!-- Nút lưu sản phẩm -->
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
+                </div>
+            </form>
+
+
+            <br>
+            <hr>
+            <div class="form-group">
+                <label for="productSizes">Chọn kích thước:</label>
+                <form th:action="@{/admin/products/{id}/remove-size(id=${product.id})}" method="POST" style="display:inline;">
+                    <div class="row" id="productSizes">
+                        <!-- Lặp qua danh sách kích thước đã có -->
+                        <div th:each="size : ${productSizes}" class="col-1 mb-2 d-flex justify-content-center">
+                            <!-- Hiển thị trong khung -->
+                            <div class="card p-2 text-center border">
+                                <!-- Hiển thị tên kích thước -->
+                                <span th:text="${size.number}" class="d-block mb-2"></span>
+                                <!-- Nút xóa kích thước ở dưới -->
+                                <input type="hidden" name="sizeId" th:value="${size.id}">
+                                <button type="submit" class="btn btn-sm btn-danger mt-2">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+            <!-- Thanh chọn thêm kích thước -->
+            <div class="form-group">
+                <label for="addSize">Thêm kích thước:</label>
+                <form th:action="@{/admin/products/{id}/add-size(id=${product.id})}" method="POST">
+                    <select id="addSize" name="sizeId" class="form-control">
+                        <option value="">Chọn kích thước</option>
+                        <!-- Lặp qua danh sách kích thước có sẵn -->
+                        <th:block th:each="size : ${availableSizes}">
+                            <option th:value="${size.id}" th:text="${size.number}"></option>
+                        </th:block>
+                    </select>
+                    <button type="submit" class="btn btn-success mt-2">Thêm</button>
+                </form>
+            </div>
+
+
+
+            <hr>
+            <br>
+
+
+
+            <div class="mt-4">
+                <h5>Thêm ảnh cho sản phẩm</h5>
+                <form id="addImageForm" enctype="multipart/form-data" >
+                    <!-- Gửi ID sản phẩm -->
+                    <input type="hidden" name="productId" th:value="${product.id}">
+
+                    <!-- Chọn màu -->
+                    <div class="form-group">
+                        <label for="productColor">Chọn màu:</label>
+                        <select name="colorId" id="productColor" class="form-control">
+                            <option th:each="color : ${allColors}"
+                                    th:value="${color.id}"
+                                    th:text="${color.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Upload ảnh -->
+                    <div class="form-group">
+                        <label for="productImage">Chọn ảnh:</label>
+                        <input type="file" name="imageFile" id="productImage" class="form-control" accept="image/*">
+                    </div>
+
+                    <!-- Nút thêm -->
+                    <button type="button" id="addImageButton" class="btn btn-success">Thêm ảnh</button>
+                </form>
+            </div>
+
+            <br>
+            <hr>
+
+
+
+
+
+
+            <!-- Xem chi tiết các ảnh theo màu -->
+            <h4>Ảnh sản phẩm theo màu:</h4>
+            <div id="productImagesContainer">
+                <!-- Lặp qua các màu sắc -->
+                <div th:each="color : ${productColors}" class="product-color" th:id="'color' + ${color.id}">
+                    <h5 th:text="${color.name}"></h5>
+                    <div class="row">
+                        <!-- Lặp qua các ảnh của màu này -->
+                        <div th:each="image : ${colorImagesMap.get(color)}" class="col-4 mb-3">
+                            <!-- Hiển thị ảnh sản phẩm -->
+                            <img th:src="@{/img/{image}(image=${image.image})}"
+                                 alt="Ảnh sản phẩm"
+                                 class="img-thumbnail"
+                                 width="150">
+
+                            <!-- Nút xóa -->
+                            <form th:action="@{/admin/products/{productId}/deleteImage(productId=${product.id})}" method="post">
+                                <input type="hidden" name="imageId" th:value="${image.id}" />
+                                <button type="submit" class="btn btn-danger btn-sm mt-2">Xóa ảnh</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+<script>
+    // Hàm xóa ảnh
+    function deleteImage(imageId) {
+        if (confirm("Bạn có chắc chắn muốn xóa ảnh này không?")) {
+            $.ajax({
+                url: '/admin/products/deleteImage/' + imageId, // API xóa ảnh
+                method: 'DELETE',
+                success: function() {
+                    alert("Xóa ảnh thành công!");
+                    location.reload();
+                },
+                error: function() {
+                    alert("Xóa ảnh thất bại!");
+                }
+            });
+        }
+    }
+
+
+
+
+    $(document).ready(function () {
+        $("#addImageButton").click(function () {
+            var formData = new FormData($('#addImageForm')[0]);
+
+            $.ajax({
+                url: "/admin/products/addImage",  // URL gọi API thêm ảnh
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    alert(response);
+                },
+                error: function (xhr, status, error) {
+                    alert("Có lỗi xảy ra khi thêm ảnh: " + error);  // Hiển thị thông báo lỗi
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
