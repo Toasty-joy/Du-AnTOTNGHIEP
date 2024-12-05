@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,13 +35,43 @@ public class AdminController {
     private SizeService sizeService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private OrderService orderService;
 
     // Hiển thị trang quản trị admin
     @GetMapping
-    public String showAdminPage() {
+    public String showAdminPage(Model model) {
+        // Tổng doanh thu trong ngày
+        BigDecimal todayRevenue = orderService.getTodayRevenue();
+
+        // Số đơn hàng trong ngày
+        long todayOrdersCount = orderService.getTodayOrdersCount();
+
+        // Tổng sản phẩm còn trong kho
+        long totalProductsInStock = productService.getTotalProductsInStock();
+
+        // Số khách hàng mua hàng hôm nay
+        long todayCustomersCount = orderService.getTodayCustomersCount();
+
+        // Lấy danh sách đơn hàng đang chờ xác nhận
+        List<OrderEntity> pendingOrders = orderService.getPendingOrders();
+        model.addAttribute("pendingOrders", pendingOrders);
+        // Thêm dữ liệu vào model
+        model.addAttribute("todayRevenue", todayRevenue);
+        model.addAttribute("todayOrdersCount", todayOrdersCount);
+        model.addAttribute("totalProductsInStock", totalProductsInStock);
+        model.addAttribute("todayCustomersCount", todayCustomersCount);
+
+
         return "admin"; // Tên view cho trang quản trị
     }
+    @PostMapping("/{id}/update-statusTangChu")
+    public String updateOrderStatusTRangChu(@PathVariable Long id, @RequestParam("status") int status) {
+        // Gọi service để cập nhật trạng thái và tổng tiền nếu trạng thái là "Đã hủy"
+        orderService.updateOrderStatus(id, status);
 
+        return "redirect:/admin";
+    }
     // Hiển thị danh sách sản phẩm
     @GetMapping("/products")
     public String showProducts(Model model) {
@@ -298,7 +329,6 @@ public class AdminController {
         }
         return "redirect:/admin/colors"; // Quay lại danh sách màu sắc
     }
-
 
 
 

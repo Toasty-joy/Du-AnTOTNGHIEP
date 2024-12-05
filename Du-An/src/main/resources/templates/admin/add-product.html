@@ -17,96 +17,98 @@
 
 </head>
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="col-auto sidebar d-flex flex-column">
-            <h3 class="text-white text-center py-3">Admin Dashboard</h3>
-            <a th:href="@{/admin/dashboard}">Dashboard</a>
-            <a th:href="@{/admin/products}">Quản lý Sản phẩm</a>
-            <a th:href="@{/admin/categories}">Quản lý Danh mục</a>
-            <a th:href="@{/admin/orders}">Quản lý Đơn hàng</a>
-            <a th:href="@{/admin/users}">Quản lý Người dùng</a>
-            <a th:href="@{/admin/settings}">Cài đặt</a>
-        </div>
 
-        <!-- Main Content -->
-        <div class="col p-4 adminContent">
-            <div class="col main-content">
-                <div class="container">
-                    <!-- Tiêu đề -->
-                    <h2 class="mb-4">Thêm sản phẩm mới</h2>
 
-                    <!-- Card Form -->
-                    <div class="card p-4">
-                        <form th:action="@{/admin/products/add}" th:object="${product}" method="post" enctype="multipart/form-data">
-                            <!-- Hàng 1: Tên sản phẩm và Danh mục -->
-                            <div class="row mb-3">
-                                <!-- Tên sản phẩm -->
-                                <div class="col-md-6">
-                                    <label for="productName" class="form-label">Tên sản phẩm:</label>
-                                    <input type="text" class="form-control" id="productName" name="name" th:value="*{name}" required>
-                                </div>
+<!-- Sidebar -->
+<div class="sidebar">
+    <h3 class="text-white text-center">Admin Dashboard</h3>
+    <a th:href="@{/admin/dashboard}">Dashboard</a>
+    <a th:href="@{/admin/products}">Quản lý Sản phẩm</a>
+    <a th:href="@{/admin/categories}">Quản lý Danh mục</a>
+    <a th:href="@{/admin/orders}">Quản lý Đơn hàng</a>
+    <a th:href="@{/admin/users}">Quản lý Người dùng</a>
+    <a th:href="@{/admin/settings}">Cài đặt</a>
+</div>
+<!-- Main Content -->
+<div class=" p-4 adminContent">
+    <div class="col main-content">
+        <div class="container">
+            <!-- Tiêu đề -->
+            <h2 class="mb-4">Thêm sản phẩm mới</h2>
 
-                                <!-- Danh mục sản phẩm -->
-                                <div class="col-md-6">
-                                    <label for="productCategory" class="form-label">Danh mục:</label>
-                                    <select class="form-select" id="productCategory" name="categoryId" required>
-                                        <option th:each="category : ${categories}"
-                                                th:value="${category.id}"
-                                                th:text="${category.name}"></option>
-                                    </select>
-                                </div>
-                            </div>
+            <!-- Card Form -->
+            <div class="card p-4">
+                <form th:action="@{/admin/products/add}" th:object="${product}" method="post"
+                      enctype="multipart/form-data">
+                    <!-- Hàng 1: Tên sản phẩm và Danh mục -->
+                    <div class="row mb-3">
+                        <!-- Tên sản phẩm -->
+                        <div class="col-md-6">
+                            <label for="productName" class="form-label">Tên sản phẩm:</label>
+                            <input type="text" class="form-control" id="productName" name="name" th:value="*{name}"
+                                   required>
+                        </div>
 
-                            <!-- Hàng 2: Giá sản phẩm và Số lượng -->
-                            <div class="row mb-3">
-                                <!-- Giá sản phẩm -->
-                                <div class="col-md-6">
-                                    <label for="productPrice" class="form-label">Giá sản phẩm:</label>
-                                    <input type="number" class="form-control" id="productPrice" name="price" th:value="*{price}" required>
-                                </div>
-
-                                <!-- Số lượng sản phẩm -->
-                                <div class="col-md-6">
-                                    <label for="productQuantity" class="form-label">Số lượng:</label>
-                                    <input type="number" class="form-control" id="productQuantity" name="quantity" th:value="*{quantity}" required>
-                                </div>
-                            </div>
-
-                            <!-- Hàng 3: Ảnh sản phẩm -->
-                            <div class="mb-3">
-                                <label for="productImage" class="form-label">Ảnh sản phẩm:</label>
-                                <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*" required>
-                            </div>
-
-                            <!-- Nút gửi -->
-                            <button type="submit" class="btn btn-primary w-100 mt-3">
-                                <i class="bi bi-save"></i> Thêm sản phẩm
-                            </button>
-                        </form>
+                        <!-- Danh mục sản phẩm -->
+                        <div class="col-md-6">
+                            <label for="productCategory" class="form-label">Danh mục:</label>
+                            <select class="form-select" id="productCategory" name="categoryId" required>
+                                <option th:each="category : ${categories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}"></option>
+                            </select>
+                        </div>
                     </div>
 
+                    <!-- Hàng 2: Giá sản phẩm và Số lượng -->
+                    <div class="row mb-3">
+                        <!-- Giá sản phẩm -->
+                        <div class="col-md-6">
+                            <label for="productPrice" class="form-label">Giá sản phẩm:</label>
+                            <input type="number" class="form-control" id="productPrice" name="price" th:value="*{price}"
+                                   required>
+                        </div>
 
-                    <!-- Modal Thông Báo -->
-                    <div class="modal fade" id="notificationModal" tabindex="-1"
-                         aria-labelledby="notificationModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="notificationModalLabel">Thông Báo</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p th:text="${successMessage}"></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <a th:href="@{/admin/products}" class="btn btn-secondary">Về danh sách sản phẩm</a>
-                                    <a th:href="@{/admin/products/{id}(id=${productId})}" class="btn btn-primary">Xem
-                                        chi tiết sản phẩm</a>
-                                </div>
-                            </div>
+                        <!-- Số lượng sản phẩm -->
+                        <div class="col-md-6">
+                            <label for="productQuantity" class="form-label">Số lượng:</label>
+                            <input type="number" class="form-control" id="productQuantity" name="quantity"
+                                   th:value="*{quantity}" required>
+                        </div>
+                    </div>
+
+                    <!-- Hàng 3: Ảnh sản phẩm -->
+                    <div class="mb-3">
+                        <label for="productImage" class="form-label">Ảnh sản phẩm:</label>
+                        <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*"
+                               required>
+                    </div>
+
+                    <!-- Nút gửi -->
+                    <button type="submit" class="btn btn-primary w-100 mt-3">
+                        <i class="bi bi-save"></i> Thêm sản phẩm
+                    </button>
+                </form>
+            </div>
+
+
+            <!-- Modal Thông Báo -->
+            <div class="modal fade" id="notificationModal" tabindex="-1"
+                 aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel">Thông Báo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p th:text="${successMessage}"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <a th:href="@{/admin/products}" class="btn btn-secondary">Về danh sách sản phẩm</a>
+                            <a th:href="@{/admin/products/{id}(id=${productId})}" class="btn btn-primary">Xem
+                                chi tiết sản phẩm</a>
                         </div>
                     </div>
                 </div>
