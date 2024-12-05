@@ -18,20 +18,18 @@
 <body class="d-flex">
 
 <!-- Sidebar -->
-<div class="bg-dark text-white p-3 vh-100" style="width: 250px;">
-    <h3 class="text-center">Admin Dashboard</h3>
-    <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/dashboard}">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/products}">Quản lý Sản phẩm</a></li>
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/categories}">Quản lý Danh mục</a></li>
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/orders}">Quản lý Đơn hàng</a></li>
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/users}">Quản lý Người dùng</a></li>
-        <li class="nav-item"><a class="nav-link text-white" th:href="@{/admin/settings}">Cài đặt</a></li>
-    </ul>
+<div class="sidebar">
+    <h3 class="text-white text-center">Admin Dashboard</h3>
+    <a th:href="@{/admin/dashboard}">Dashboard</a>
+    <a th:href="@{/admin/products}">Quản lý Sản phẩm</a>
+    <a th:href="@{/admin/categories}">Quản lý Danh mục</a>
+    <a th:href="@{/admin/orders}">Quản lý Đơn hàng</a>
+    <a th:href="@{/admin/users}">Quản lý Người dùng</a>
+    <a th:href="@{/admin/settings}">Cài đặt</a>
 </div>
 
 <!-- Main Content -->
-<div class="flex-grow-1 p-4">
+<div class="flex-grow-1 p-4 adminContent">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Quản lý Sản phẩm</h1>
         <a class="btn btn-success" href="/admin/products/add">

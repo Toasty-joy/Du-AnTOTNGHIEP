@@ -140,5 +140,8 @@ public class ProductService {
             throw new RuntimeException("Không thể lưu file: " + file.getOriginalFilename(), e);
         }
     }
-
+    // Lấy tổng số sản phẩm còn trong kho
+    public long getTotalProductsInStock() {
+        return productRepository.sumQuantityInStock();
+    }
 }

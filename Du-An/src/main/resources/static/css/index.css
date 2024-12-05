@@ -423,3 +423,20 @@ img.BoCongThuong{
 .tongTien1 h4{
   color: black;
 }
+
+.adminContent .trangchu .card {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminContent .trangchu .card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.adminContent .trangchu.card-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

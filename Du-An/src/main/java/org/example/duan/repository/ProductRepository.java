@@ -25,4 +25,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
     // Tìm sản phẩm theo màu
     List<ProductEntity> findByShoesImages_Color(ColorEntity color);
+    @Query("SELECT SUM(p.quantity) FROM ProductEntity p WHERE p.quantity > 0")
+    Long sumQuantityInStock();
 }

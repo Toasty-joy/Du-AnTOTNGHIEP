@@ -7,7 +7,9 @@ import org.example.duan.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -54,8 +56,34 @@ public class OrderService {
 
         // Cập nhật trạng thái của đơn hàng
         order.setStatus(status);
-
+        // Nếu trạng thái là "Đã hủy", cập nhật tổng tiền về 0
+        if (status == 3) {
+            order.setTotal(BigDecimal.ZERO);
+        }
         // Lưu đơn hàng với trạng thái mới
         return orderRepository.save(order);
     }
+    // Lấy tổng doanh thu trong ngày
+    public BigDecimal getTodayRevenue() {
+        return orderRepository.findTotalRevenueToday();
+    }
+
+    // Lấy số đơn hàng trong ngày
+    public long getTodayOrdersCount() {
+        return orderRepository.countOrdersToday();
+    }
+
+    // Lấy tất cả đơn hàng
+    public List<OrderEntity> getAllOrders() {
+        return orderRepository.findAll();
+    }
+    // Lấy số khách hàng mua hàng hôm nay
+    public long getTodayCustomersCount() {
+        return orderRepository.countDistinctCustomersToday();
+    }
+    // Lấy danh sách đơn hàng đang chờ xác nhận (status = 0)
+    public List<OrderEntity> getPendingOrders() {
+        return orderRepository.findOrdersByStatusInProcessingOrConfirmed();
+    }
+
 }
