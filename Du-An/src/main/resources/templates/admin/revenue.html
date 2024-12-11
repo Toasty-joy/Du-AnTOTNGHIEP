@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê doanh thu - Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Thư viện Chart.js -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/index.css">
+    <style>
+
+
+
+    </style>
+</head>
+<body>
+<div th:replace="fragments/sidebar:: sidebar"></div>
+
+<div class="flex-grow-1 p-4 adminContent danhThu">
+<h1>Thống kê Doanh thu - Admin</h1>
+
+<!-- Lựa chọn năm -->
+<div style="text-align: center; margin-bottom: 20px;">
+    <label for="yearSelect">Chọn năm:</label>
+    <select id="yearSelect">
+        <option th:each="year : ${#numbers.sequence(2024, currentYear)}" th:text="${year}" th:value="${year}"></option>
+    </select>
+</div>
+
+<!-- Biểu đồ doanh thu theo tháng -->
+<div class="chart-container">
+    <h2>Doanh thu theo tháng</h2>
+    <canvas id="monthlyRevenueChart"></canvas>
+</div>
+
+<!-- Biểu đồ doanh thu theo năm -->
+<div class="chart-container">
+    <h2>Doanh thu theo năm</h2>
+    <canvas id="yearlyRevenueChart"></canvas>
+</div>
+
+<footer>
+    &copy; 2024 Admin Dashboard - Thống kê doanh thu
+</footer>
+</div>
+<script>
+    const yearSelect = document.getElementById('yearSelect');
+
+    // Hàm tải biểu đồ doanh thu theo tháng
+    function loadMonthlyRevenue(year) {
+        fetch(`/admin/revenue/monthly?year=` + year)
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => `Tháng ${item.month}`);
+                const revenues = data.map(item => item.totalRevenue);
+
+                // Hủy biểu đồ cũ nếu tồn tại
+                if (window.monthlyChart) {
+                    window.monthlyChart.destroy();
+                }
+
+                // Tạo biểu đồ cột
+                window.monthlyChart = new Chart(document.getElementById('monthlyRevenueChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Doanh thu (VNĐ)',
+                            data: revenues,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: `Doanh thu theo tháng - Năm ${year}`
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Tháng'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Doanh thu (VNĐ)'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    }
+
+    // Hàm tải biểu đồ doanh thu theo năm (Biểu đồ đường)
+    function loadYearlyRevenue() {
+        fetch(`/admin/revenue/yearly`)
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => `Năm ${item.year}`);
+                const revenues = data.map(item => item.totalRevenue);
+
+                // Hủy biểu đồ cũ nếu tồn tại
+                if (window.yearlyChart) {
+                    window.yearlyChart.destroy();
+                }
+
+                // Tạo biểu đồ đường (line chart)
+                window.yearlyChart = new Chart(document.getElementById('yearlyRevenueChart'), {
+                    type: 'line',  // Đổi loại biểu đồ thành "line"
+                    data: {
+                        labels: labels,  // Các mốc năm
+                        datasets: [{
+                            label: 'Doanh thu (VNĐ)',
+                            data: revenues,  // Dữ liệu doanh thu của mỗi năm
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Màu nền của đường
+                            borderColor: 'rgba(75, 192, 192, 1)',  // Màu đường
+                            borderWidth: 2,  // Độ dày của đường
+                            fill: true  // Để lấp đầy dưới đường biểu đồ (tạo hiệu ứng)
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Doanh thu theo năm'
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Năm'
+                                },
+                                ticks: {
+                                    maxRotation: 45,  // Xoay nhãn trục X cho dễ đọc
+                                    minRotation: 0
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,  // Đảm bảo trục Y bắt đầu từ 0
+                                title: {
+                                    display: true,
+                                    text: 'Doanh thu (VNĐ)'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    }
+
+    // Thay đổi năm, tải lại dữ liệu
+    yearSelect.addEventListener('change', (event) => {
+        const selectedYear = event.target.value;
+        loadMonthlyRevenue(selectedYear);
+    });
+
+    // Load dữ liệu mặc định (năm hiện tại)
+    const currentYear = yearSelect.value;
+    loadMonthlyRevenue(currentYear);
+    loadYearlyRevenue();
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm bán chạy - Admin</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Thư viện Chart.js -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="/css/index.css" rel="stylesheet">
+    <style>
+        /* Thiết kế lại phần bố cục để căn giữa */
+        .sanPhamBanChay .chart-container {
+            width: 90%;
+            max-width: 600px;  /* Điều chỉnh kích thước tối đa */
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9; /* Tạo nền sáng cho biểu đồ */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .sanPhamBanChay footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .sanPhamBanChay h1 {
+            text-align: center;  /* Căn giữa tiêu đề */
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .sanPhamBanChay h2 {
+            text-align: center;  /* Căn giữa tiêu đề phụ */
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* Cải thiện độ tương phản và font chữ */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1;
+            padding-top: 50px;
+        }
+
+        /* Bố cục căn giữa */
+        .adminContent {
+            display: flex;
+            justify-content: center;  /* Căn giữa nội dung */
+            align-items: center;
+            height: 100vh;  /* Chiều cao đầy đủ của màn hình */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/sidebar:: sidebar"></div>
+
+<div class="flex-grow-1 p-4 adminContent">
+    <div class="sanPhamBanChay">
+        <!-- Biểu đồ sản phẩm bán chạy -->
+        <div class="chart-container">
+            <h1>Sản phẩm bán chạy</h1>
+            <canvas id="topSellingProductsChart"></canvas>
+        </div>
+
+        <footer>
+            &copy; 2024 Admin Dashboard - Sản phẩm bán chạy
+        </footer>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    // Truyền dữ liệu từ controller vào JavaScript dưới dạng JSON
+    const topSellingProducts = [[${topSellingProducts}]];  // Dữ liệu từ controller
+
+    // Kiểm tra xem dữ liệu đã được truyền đúng chưa
+    console.log(topSellingProducts);
+
+    // Chuyển đổi dữ liệu thành mảng tên sản phẩm và số lượng bán
+    const productNames = topSellingProducts.map(product => product[0]);
+    const quantities = topSellingProducts.map(product => product[1]);
+
+    // Vẽ biểu đồ tròn (pie chart)
+    const ctx = document.getElementById('topSellingProductsChart').getContext('2d');
+    const topSellingProductsChart = new Chart(ctx, {
+        type: 'pie',  // Biểu đồ tròn
+        data: {
+            labels: productNames,  // Tên sản phẩm
+            datasets: [{
+                label: 'Số lượng bán',
+                data: quantities,  // Số lượng bán
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(231, 233, 237, 0.7)', // Bạn có thể thêm nhiều màu hơn cho biểu đồ tròn
+                ],
+                borderColor: 'rgba(255, 255, 255, 1)',  // Màu viền của các phần trong biểu đồ
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom', // Di chuyển chú giải xuống dưới
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)',  // Màu nền tooltip
+                    titleFont: {
+                        size: 16
+                    },
+                    bodyFont: {
+                        size: 14
+                    },
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return tooltipItem.label + ': ' + tooltipItem.raw + ' sản phẩm';
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                        family: 'Arial, sans-serif',
+                        color: '#333'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

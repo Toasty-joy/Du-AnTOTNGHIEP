@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -86,4 +85,41 @@ public class OrderService {
         return orderRepository.findOrdersByStatusInProcessingOrConfirmed();
     }
 
+    public List<Map<String, Object>> getMonthlyRevenue(int year) {
+        List<Object[]> results = orderRepository.getRevenueByMonth(year);
+        List<Map<String, Object>> revenues = new ArrayList<>();
+
+        // Khởi tạo danh sách doanh thu cho 12 tháng với giá trị mặc định
+        for (int i = 1; i <= 12; i++) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("month", i);
+            data.put("totalRevenue", BigDecimal.ZERO); // Doanh thu mặc định là 0
+            revenues.add(data);
+        }
+
+        // Ghi đè doanh thu thực tế từ cơ sở dữ liệu
+        for (Object[] result : results) {
+            int month = (int) result[0]; // Lấy số tháng từ kết quả truy vấn
+            BigDecimal totalRevenue = (BigDecimal) result[1]; // Lấy tổng doanh thu
+            revenues.get(month - 1).put("totalRevenue", totalRevenue); // Cập nhật doanh thu cho tháng tương ứng
+        }
+
+        return revenues;
+    }
+
+
+    public List<Map<String, Object>> getYearlyRevenue() {
+        List<Object[]> results = orderRepository.getRevenueByYear();
+        List<Map<String, Object>> revenues = new ArrayList<>();
+        for (Object[] result : results) {
+            Map<String, Object> data = new HashMap<>();
+            data.put("year", result[0]);  // Năm
+            data.put("totalRevenue", result[1]);  // Tổng doanh thu
+            revenues.add(data);
+        }
+        return revenues;
+    }
+    public List<Object[]> getTopSellingProducts() {
+        return orderDetailsRepository.findTopSellingProducts();
+    }
 }

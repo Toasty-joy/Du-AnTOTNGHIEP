@@ -440,3 +440,46 @@ img.BoCongThuong{
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.danhThu h1, .danhThu h2 {
+  text-align: center;
+  color: #007BFF;
+}
+
+.danhThu h1 {
+  margin-bottom: 30px;
+}
+
+.danhThu select {
+  padding: 5px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.danhThu label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.danhThu .chart-container {
+  margin: 20px auto;
+  max-width: 900px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.danhThu canvas {
+  margin-top: 20px;
+}
+
+.danhThu footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #888;
+}

@@ -105,7 +105,7 @@ public class VNPayConfig {
         }
     }
 
-    public static String getIpAddress(HttpServletRequest request) {
+    public static String getIpAddressString(HttpServletRequest request) {
         String ipAdress;
         try {
             ipAdress = request.getHeader("X-FORWARDED-FOR");
