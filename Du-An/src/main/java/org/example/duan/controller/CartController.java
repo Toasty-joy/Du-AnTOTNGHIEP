@@ -68,6 +68,7 @@ public class CartController {
                             @RequestParam("quantity") int quantity,
                             @RequestParam("colorId") int colorId,
                             @RequestParam("sizeId") int sizeId,
+                            @RequestParam(value = "action", required = false) String action,
                             HttpSession session,
                             Model model) {
         // Kiểm tra xem người dùng đã đăng nhập chưa
@@ -85,12 +86,18 @@ public class CartController {
 
 
 
-        // Thêm thông báo thành công vào model
-        model.addAttribute("notification", "Sản phẩm đã được thêm vào giỏ hàng!");
+        if ("buyNow".equals(action)) {
+            // Chuyển hướng đến trang thanh toán nếu bấm "Mua ngay"
+            return "redirect:/cart";
+        } else {
+            // Thêm thông báo thành công vào model nếu bấm "Thêm vào giỏ hàng"
+            model.addAttribute("notification", "Sản phẩm đã được thêm vào giỏ hàng!");
 
-        // Chuyển hướng đến trang giỏ hàng
-        return "redirect:/cart";
+            // Chuyển hướng đến trang giỏ hàng
+            return "redirect:/product/"+productId;
+        }
     }
+
 
     // Xóa sản phẩm khỏi giỏ hàng
     @PostMapping("/remove")

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận mã OTP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../js/index.js">
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+    <div class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+        <h2 class="text-center mb-4">Xác nhận mã OTP</h2>
+        <form th:action="@{/verify-otp}" method="post">
+            <!-- Hidden Email Field -->
+            <input type="hidden" name="email" th:value="${email}" />
+
+            <!-- Input OTP -->
+            <div class="mb-3">
+                <label for="otp" class="form-label">Nhập mã OTP:</label>
+                <input type="text" id="otp" name="otp" class="form-control" placeholder="Nhập mã OTP" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Xác nhận</button>
+        </form>
+
+        <!-- Error Message -->
+        <p th:if="${error}" th:text="${error}" class="text-danger mt-3 text-center"></p>
+    </div>
+</div>
+<hr>
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k7zXbmlP+Pcl9bZtAoEn8VW3dfI06Vp3HBcyCkWFSsNYAMbLzKrHB6k3oRkU8wb6"
+        crossorigin="anonymous"></script>
+</body>
+</html>

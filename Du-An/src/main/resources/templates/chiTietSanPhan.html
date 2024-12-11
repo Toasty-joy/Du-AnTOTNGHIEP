@@ -50,9 +50,7 @@
                 <span class="textDanhGia">1201 Số lượng thích</span>
             </div>
             <br>
-            <div class="tien" th:text="*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')} + 'đ'">giái
-
-            </div>
+            <div class="tien" th:text="*{#numbers.formatDecimal(price, 0, 'COMMA', 0, 'POINT')} + 'đ' ">giái</div>
             <br>
             <div class="container mau">
                 <h6>Màu:</h6>
@@ -162,9 +160,16 @@
             </div>
             <div class="container mt-5">
 
-                <button type="submit" class="btn themGioHang">
-                    <i class="bi bi-cart2"></i> Mua ngay
-                </button>
+                <div class="container mt-5">
+                    <!-- Nút mua ngay -->
+                    <button type="submit" class="btn muaNgay" name="action" value="buyNow">
+                        <i class="bi bi-cart2"></i> Mua ngay
+                    </button>
+                    <!-- Nút thêm vào giỏ hàng -->
+                    <button type="submit" class="btn themGioHang me-2" name="action" value="addToCart">
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                </div>
             </div>
             <br>
             <div class="container chuHoTroTong">
