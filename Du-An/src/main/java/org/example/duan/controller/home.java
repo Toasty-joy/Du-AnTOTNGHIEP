@@ -36,7 +36,10 @@ public class home {
 
         // Lấy 4 sản phẩm đầu tiên của Dép & Sandal Nữ (categoryId = 101)
         List<ProductEntity> sandalsProducts = productService.getTop4Sandals();
-
+        // Thêm các danh mục mới
+        model.addAttribute("menShoes", productService.getTop4MenShoes());
+        model.addAttribute("menSandals", productService.getTop4MenSandals());
+        model.addAttribute("sportsShoes", productService.getTop4SportsShoes());
         // Kiểm tra xem dữ liệu có null hay không
         if (highHeelsProducts == null || sandalsProducts == null) {
             System.out.println("Không có sản phẩm nào trong danh mục.");
@@ -88,18 +91,48 @@ public class home {
 
 
     @GetMapping("/category/{id}")
-    public String viewCategoryProducts(@PathVariable("id") int categoryId, Model model) {
-        List<ProductEntity> products = productService.getTop4ByCategoryId(categoryId);
+    public String viewCategoryProducts(@PathVariable("id") int categoryId,
+                                       @RequestParam(value = "sortOption", defaultValue = "0") int sortOption,
+                                       Model model) {
+        List<ProductEntity> products;
 
-        // Lấy thông tin tên danh mục
+        // Xử lý sắp xếp dựa trên lựa chọn của người dùng
+        switch (sortOption) {
+            case 1:
+                // Sắp xếp theo giá từ thấp đến cao
+                products = productService.getProductsByCategoryIdSortedByPriceAsc(categoryId);
+                break;
+            case 2:
+                // Sắp xếp theo giá từ cao đến thấp
+                products = productService.getProductsByCategoryIdSortedByPriceDesc(categoryId);
+                break;
+            case 3:
+                // Sắp xếp theo tên từ A đến Z
+                products = productService.getProductsByCategoryIdSortedByNameAsc(categoryId);
+                break;
+            case 4:
+                // Sắp xếp theo tên từ Z đến A
+                products = productService.getProductsByCategoryIdSortedByNameDesc(categoryId);
+                break;
+            default:
+                // Nếu không có lựa chọn sắp xếp, lấy danh sách sản phẩm theo mặc định
+                products = productService.getProductsByCategoryId(categoryId);
+                break;
+        }
+
+        // Lấy tên danh mục
         String categoryName = categoryService.getCategoryNameById(categoryId);
 
-        // Thêm dữ liệu vào model để truyền sang view
+        // Thêm vào model
         model.addAttribute("products", products);
         model.addAttribute("categoryName", categoryName);
-
-        return "sanPham"; // Tên file HTML để hiển thị danh sách sản phẩm
+        model.addAttribute("categoryId", categoryId);  // Truyền lại ID danh mục
+        model.addAttribute("sortOption", sortOption);
+        return "sanPham";  // Trả về trang hiển thị danh sách sản phẩm
     }
+
+
+
 
     @GetMapping("/chitiet")
     public String chitiet(Model model) {

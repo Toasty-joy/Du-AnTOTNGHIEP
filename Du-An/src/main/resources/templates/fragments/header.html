@@ -16,101 +16,34 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    GIÁ ƯU ĐÃI
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">79K</a></li>
-                                    <li><a class="dropdown-item" href="#">99K-119K</a></li>
-                                    <li><a class="dropdown-item" href="#">149K-159K</a></li>
-                                </ul>
+                            <!-- Giày Cao Gót Nữ -->
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/category/{id}(id=100)}">GIÀY CAO GÓT NỮ</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    GIÀY NỮ
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">GIÀY CAO GÓT</a>
-
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO</a></li>
-                                    <li><a class="dropdown-item" href="#">SANDAL NỮ</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP SỤC</a>
-
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#"> GIÀY BÚP BÊ & MỌI </a></li>
-                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP NỮ</a></li>
-                                </ul>
+                            <!-- Dép & Sandal Nữ -->
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/category/{id}(id=101)}">DÉP & SANDAL NỮ</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    GIÀY NAM
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">GIÀY THỂ THAO NAM </a></li>
-                                    <li><a class="dropdown-item" href="#">SANDAL NAM</a></li>
-                                    <li><a class="dropdown-item" href="#">DÉP NAM</a></li>
-                                    <li><a class="dropdown-item" href="#">GIÀY TÂY & SLIP ON</a></li>
-                                    <li><a class="dropdown-item" href="#">OXFORD & BOOT</a></li>
-                                </ul>
+                            <!-- Giày Nam -->
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/category/{id}(id=102)}">GIÀY NAM</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    GIÀY CẶP
-                                </a>
+                            <!-- Dép Nam -->
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/category/{id}(id=103)}">DÉP NAM</a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    BALO-TÚI
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">BALO LAPTOP, DU LỊCH, THỜI TRANG </a></li>
-                                    <li><a class="dropdown-item" href="#">TÚI DEO CHÉO</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item dropdown"></li>
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                SALE 50%
-                            </a>
-                            </li>
-
-                            <li class="nav-item dropdown"></li>
-                            <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                SẢN PHẨM BÁN CHẠY
-                            </a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active " href="#" role="button" data-bs-toggle="dropdown"
-                                   aria-expanded="false">
-                                    PHỤ KIỆN
-                                </a>
-                                <ul class="dropdown-menu chu-footer">
-                                    <li><a class="dropdown-item" href="#">VỚ </a></li>
-                                    <li><a class="dropdown-item" href="#">CHAI VỆ SINH GIÀY</a></li>
-                                    <li><a class="dropdown-item" href="#">DÂY GIÀY</a></li>
-                                    <li><a class="dropdown-item" href="#">ĐẾ LÓT</a></li>
-                                </ul>
+                            <!-- Giày Thể Thao -->
+                            <li class="nav-item">
+                                <a class="nav-link active" th:href="@{/category/{id}(id=104)}">GIÀY THỂ THAO</a>
                             </li>
 
                         </ul>
                     </div>
+
 
                     <!-- Thanh tìm kiếm trên màn hình lớn -->
                     <form class="d-flex d-none d-lg-flex" role="search" action="/search" method="get">

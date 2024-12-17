@@ -33,7 +33,9 @@ public class ProductService {
     public List<ProductEntity> getTop4ByCategoryId(int categoryId) {
         return productRepository.findTop4ByCategoryIdOrderByIdAsc(categoryId);
     }
-
+    public List<ProductEntity> getProductsByCategoryId(int categoryId) {
+        return productRepository.findByCategoryIdOrderByIdAsc(categoryId);
+    }
     // Các phương thức cụ thể cho Giày Cao Gót và Sandal
     public List<ProductEntity> getTop4HighHeels() {
         return getTop4ByCategoryId(100);  // Giày Cao Gót Nữ (categoryId = 100)
@@ -42,6 +44,35 @@ public class ProductService {
     public List<ProductEntity> getTop4Sandals() {
         return getTop4ByCategoryId(101);  // Dép & Sandal Nữ (categoryId = 101)
     }
+
+    public List<ProductEntity> getTop4MenShoes() {
+        return getTop4ByCategoryId(102);  // Giày Nam (categoryId = 102)
+    }
+
+    public List<ProductEntity> getTop4MenSandals() {
+        return getTop4ByCategoryId(103);  // Dép Nam (categoryId = 103)
+    }
+
+    public List<ProductEntity> getTop4SportsShoes() {
+        return getTop4ByCategoryId(104);  // Giày Thể Thao (categoryId = 104)
+    }
+
+    public List<ProductEntity> getProductsByCategoryIdSortedByPriceAsc(int categoryId) {
+        return productRepository.findByCategoryIdOrderByPriceAsc(categoryId);
+    }
+
+    public List<ProductEntity> getProductsByCategoryIdSortedByPriceDesc(int categoryId) {
+        return productRepository.findByCategoryIdOrderByPriceDesc(categoryId);
+    }
+
+    public List<ProductEntity> getProductsByCategoryIdSortedByNameAsc(int categoryId) {
+        return productRepository.findByCategoryIdOrderByNameAsc(categoryId);
+    }
+
+    public List<ProductEntity> getProductsByCategoryIdSortedByNameDesc(int categoryId) {
+        return productRepository.findByCategoryIdOrderByNameDesc(categoryId);
+    }
+
 
     // Lấy sản phẩm theo ID
     public ProductEntity getProductById(int id) {
