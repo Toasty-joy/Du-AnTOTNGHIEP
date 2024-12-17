@@ -5,9 +5,14 @@
     <h3 class="text-white text-center"><a th:href="@{/admin}">Admin</a></h3>
     <a th:href="@{/admin/products}">Quản lý Sản phẩm</a>
     <a th:href="@{/admin/orders}">Quản lý Đơn hàng</a>
-    <a th:href="@{/admin/users}">Quản lý Người dùng</a>
+    <a th:href="@{/admin/accounts}">Quản lý Người dùng</a>
     <a th:href="@{/admin/revenue}">Danh thu</a>
     <a th:href="@{/admin/revenue/top-selling-products}">Sản phẩm bán chạy</a>
-
+    <li class="nav-item mb-2">
+        <form action="/account/logout" method="POST" class="d-flex">
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+            <button class="btn btn-danger" type="submit">Đăng Xuất</button>
+        </form>
+    </li>
 </div>
 </footer>
