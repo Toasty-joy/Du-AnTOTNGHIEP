@@ -42,7 +42,7 @@
                     <div>
                         <h5 class="card-title">Tổng doanh thu</h5>
                         <p class="card-text">
-                            <span th:text="${todayRevenue}"></span> VND
+                            <span th:text="*{#numbers.formatDecimal(todayRevenue, 0, 'COMMA', 0, 'POINT')} + 'đ'"></span>
                         </p>
                     </div>
                 </div>

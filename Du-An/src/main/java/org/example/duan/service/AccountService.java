@@ -4,6 +4,8 @@ import org.example.duan.entity.AccountEntity;
 import org.example.duan.repository.AccountRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -76,4 +78,35 @@ public class AccountService {
         accountRepository.save(account);
         return "Mật khẩu đã được thay đổi thành công!";
     }
+
+    // Lấy danh sách tất cả tài khoản
+    public List<AccountEntity> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+
+    // Tìm kiếm tài khoản theo từ khóa
+    public List<AccountEntity> searchAccounts(String keyword) {
+        return accountRepository.searchAccounts(keyword);
+    }
+
+    // Kích hoạt hoặc vô hiệu hóa tài khoản
+    public void toggleAccountStatus(String username) {
+        AccountEntity account = accountRepository.findById(username).orElse(null);
+        if (account != null) {
+            account.setActivated(!account.isActivated());
+            accountRepository.save(account);
+        }
+    }
+
+    // Xóa tài khoản
+    public void deleteAccount(String username) {
+        accountRepository.deleteById(username);
+    }
+    // Phương thức thay đổi quyền admin
+    public void changeUserRole(String username) {
+        AccountEntity account = accountRepository.findById(username).orElseThrow(() -> new RuntimeException("User not found"));
+        account.setAdmin(!account.isAdmin());  // Đảo ngược giá trị của quyền admin
+        accountRepository.save(account);  // Lưu lại thay đổi
+    }
+
 }
