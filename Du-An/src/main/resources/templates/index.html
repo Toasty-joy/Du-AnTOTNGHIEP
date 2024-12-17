@@ -66,37 +66,30 @@
 
 
 <div>
+  <!-- Giày Cao Gót Nữ -->
   <div class="d-flex justify-content-center">
     <h5>Giày Cao Gót Nữ</h5>
   </div>
   <br>
   <div class="container mb-4">
     <div class="row">
-      <!-- Hiển thị 4 sản phẩm Giày Cao Gót Nữ -->
       <div class="col-6 col-lg-3 mb-4" th:each="item : ${highHeels}">
         <a th:href="@{/product/{id}(id=${item.id})}">
-
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
           <div class="d-flex justify-content-center align-items-center">
             <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
-            <!-- Giá sản phẩm -->
             <h4 th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + 'đ'">Giá</h4>
-
           </div>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- Liên kết "Xem tất cả" cho Giày Cao Gót Nữ -->
   <div class="d-flex justify-content-center tatca">
     <a th:href="@{/category/{id}(id=100)}">Xem tất cả Giày Cao Gót Nữ</a>
   </div>
-
-  <br>
-  <hr>
+  <br><hr>
 
   <!-- Dép & Sandal Nữ -->
   <div class="d-flex justify-content-center">
@@ -105,32 +98,101 @@
   <br>
   <div class="container mb-4">
     <div class="row">
-      <!-- Hiển thị 4 sản phẩm Dép & Sandal Nữ -->
       <div class="col-6 col-lg-3 mb-4" th:each="item : ${sandals}">
         <a th:href="@{/product/{id}(id=${item.id})}">
-          <!-- Hình ảnh sản phẩm -->
           <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
-
           <div class="d-flex justify-content-center align-items-center">
             <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
           </div>
           <div class="d-flex justify-content-center align-items-center">
-            <!-- Giá sản phẩm -->
             <h4 th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + 'đ'">Giá</h4>
           </div>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- Liên kết "Xem tất cả" cho Dép & Sandal Nữ -->
   <div class="d-flex justify-content-center tatca">
     <a th:href="@{/category/{id}(id=101)}">Xem tất cả Dép & Sandal Nữ</a>
   </div>
+  <br><hr>
+
+  <!-- Giày Nam -->
+  <div class="d-flex justify-content-center">
+    <h5>Giày Nam</h5>
+  </div>
   <br>
-  <hr>
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-6 col-lg-3 mb-4" th:each="item : ${menShoes}">
+        <a th:href="@{/product/{id}(id=${item.id})}">
+          <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <h4 th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + 'đ'">Giá</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center tatca">
+    <a th:href="@{/category/{id}(id=102)}">Xem tất cả Giày Nam</a>
+  </div>
+  <br><hr>
+
+  <!-- Dép Nam -->
+  <div class="d-flex justify-content-center">
+    <h5>Dép Nam</h5>
+  </div>
+  <br>
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-6 col-lg-3 mb-4" th:each="item : ${menSandals}">
+        <a th:href="@{/product/{id}(id=${item.id})}">
+          <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <h4 th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + 'đ'">Giá</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center tatca">
+    <a th:href="@{/category/{id}(id=103)}">Xem tất cả Dép Nam</a>
+  </div>
+  <br><hr>
+
+  <!-- Giày Thể Thao -->
+  <div class="d-flex justify-content-center">
+    <h5>Giày Thể Thao</h5>
+  </div>
+  <br>
+  <div class="container mb-4">
+    <div class="row">
+      <div class="col-6 col-lg-3 mb-4" th:each="item : ${sportsShoes}">
+        <a th:href="@{/product/{id}(id=${item.id})}">
+          <img th:src="@{/img/{image}(image=${item.image})}" class="card-img-top" th:alt="${item.name}">
+          <div class="d-flex justify-content-center align-items-center">
+            <p class="TenSP card-title fw-bold text-dark" th:text="${item.name}">Tên sản phẩm</p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center">
+            <h4 th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')} + 'đ'">Giá</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center tatca">
+    <a th:href="@{/category/{id}(id=104)}">Xem tất cả Giày Thể Thao</a>
+  </div>
 </div>
 
+<br><hr>
+<br>
 
 
 
